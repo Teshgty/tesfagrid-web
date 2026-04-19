@@ -1,4 +1,5 @@
 # tesfagrid-web
+HEAD
 
 The research home of the **Tesfa Grid** programme — a geometric framework
 for prime numbers, maintained by Tesfaye Dereje from Addis Ababa, Ethiopia.
@@ -82,3 +83,6 @@ Individual volumes have their own BibTeX entries listed on each page.
 ---
 
 © 2026 Tesfaye Dereje · Addis Ababa, Ethiopia
+=======
+Tesfa Grid research framework — mathematical foundation for theorem-guided cryptography. Home of Theorem 7, the Column-Class Sieve, and the Oscillation Law.
+eb650a188703873c33161cff350af736700ccb9a
