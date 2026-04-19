@@ -1,0 +1,707 @@
+/* ═══════════════════════════════════════════════════════════════
+   Tesfa Grid — shared stylesheet
+   Design language: Mathematical Journal (1950s monograph × 2026)
+   ═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Palette — warm academic */
+  --paper:       #faf6ee;    /* cream page */
+  --paper-deep:  #f3ecdd;    /* deeper cream for section fills */
+  --ink:         #1a1510;    /* deep warm black body text */
+  --ink-dim:     #5a4f43;    /* secondary body text */
+  --ink-faint:   #8a7d6f;    /* captions, metadata */
+  --rule:        #c9b99b;    /* decorative rules and borders */
+  --rule-faint:  #e3d9c4;    /* hairlines */
+
+  /* Accents */
+  --oxblood:     #8b2635;    /* primary accent, theorem callouts */
+  --oxblood-dim: #6b1c29;    /* pressed state */
+  --gold:        #c9a227;    /* decorative, pull quotes */
+  --gold-deep:   #9a7a1b;    /* gold on hover */
+
+  /* Typography */
+  --ff-body:     'EB Garamond', 'Garamond', 'Times New Roman', Georgia, serif;
+  --ff-head:     'Crimson Pro', 'Playfair Display', Georgia, serif;
+  --ff-mono:     'JetBrains Mono', 'Courier New', monospace;
+
+  /* Spacing scale — based on golden ratio */
+  --s-xs:  0.382rem;
+  --s-sm:  0.618rem;
+  --s:     1rem;
+  --s-md:  1.618rem;
+  --s-lg:  2.618rem;
+  --s-xl:  4.236rem;
+  --s-xxl: 6.854rem;
+
+  /* Reading measure — optimal ~72ch */
+  --measure: 36rem;
+  --measure-wide: 44rem;
+}
+
+/* Reset with intention */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  font-size: 18px;   /* generous default, for readability */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  hanging-punctuation: first last;
+}
+
+body {
+  font-family: var(--ff-body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.62;
+  font-feature-settings: "liga" 1, "kern" 1, "onum" 1;  /* ligatures, old-style numerals */
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Paper texture — subtle noise */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+body > * { position: relative; z-index: 1; }
+
+/* Links — understated, scholarly */
+a {
+  color: var(--oxblood);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: border-color 0.2s, color 0.2s;
+}
+a:hover { color: var(--oxblood-dim); border-bottom-color: var(--oxblood); }
+
+/* ═══════════════════════════════════════════════════════════════
+   NAVIGATION — scholarly header, like the title page of a journal
+   ═══════════════════════════════════════════════════════════════ */
+nav {
+  padding: var(--s-md) var(--s-lg);
+  border-bottom: 1px solid var(--rule-faint);
+  background: var(--paper);
+}
+.nav-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-md);
+  flex-wrap: wrap;
+}
+.nav-mast {
+  font-family: var(--ff-head);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  border-bottom: none;
+  line-height: 1.1;
+}
+.nav-mast em {
+  font-style: italic;
+  color: var(--oxblood);
+  font-weight: 400;
+}
+.nav-mast-sub {
+  display: block;
+  font-family: var(--ff-body);
+  font-size: 0.72rem;
+  font-style: italic;
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
+  margin-top: 2px;
+  font-weight: 400;
+}
+.nav-links {
+  display: flex;
+  gap: var(--s-md);
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.nav-links a {
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  color: var(--ink-dim);
+  border-bottom: none;
+  font-style: italic;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.here { color: var(--oxblood); }
+.nav-links a.here {
+  border-bottom: 1px solid var(--oxblood);
+  padding-bottom: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTAINERS
+   ═══════════════════════════════════════════════════════════════ */
+.page {
+  max-width: var(--measure-wide);
+  margin: 0 auto;
+  padding: var(--s-xxl) var(--s-lg) var(--s-xl);
+}
+.page-wide {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--s-xxl) var(--s-lg) var(--s-xl);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADINGS — scholarly typographic hierarchy
+   ═══════════════════════════════════════════════════════════════ */
+h1, h2, h3, h4 {
+  font-family: var(--ff-head);
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+/* Page title — rare, dramatic, centered */
+h1.title {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: var(--s-xs);
+  letter-spacing: -0.025em;
+}
+h1.title em {
+  font-style: italic;
+  color: var(--oxblood);
+  font-weight: 400;
+}
+.subtitle {
+  font-family: var(--ff-body);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-dim);
+  text-align: center;
+  margin-bottom: var(--s-lg);
+  font-weight: 400;
+}
+
+/* Section heading — number, then title, like a book chapter */
+h2 {
+  font-size: 1.6rem;
+  margin-top: var(--s-xl);
+  margin-bottom: var(--s);
+  position: relative;
+  padding-left: 0;
+}
+h2 .num {
+  color: var(--oxblood);
+  font-style: italic;
+  font-weight: 400;
+  margin-right: 0.5em;
+  font-size: 0.85em;
+}
+
+/* Sub-section */
+h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: var(--s-md);
+  margin-bottom: var(--s-sm);
+  font-style: italic;
+  color: var(--oxblood-dim);
+}
+
+h4 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  margin-top: var(--s-md);
+  margin-bottom: var(--s-xs);
+  font-weight: 600;
+  font-family: var(--ff-body);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BODY TEXT — the reading surface
+   ═══════════════════════════════════════════════════════════════ */
+p {
+  max-width: var(--measure);
+  margin-bottom: var(--s);
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* Drop cap on first paragraph of articles */
+.article > p:first-of-type::first-letter,
+.drop-cap::first-letter {
+  font-family: var(--ff-head);
+  font-size: 3.8em;
+  font-weight: 700;
+  float: left;
+  line-height: 0.85;
+  margin: 0.08em 0.1em 0 0;
+  color: var(--oxblood);
+  font-style: italic;
+}
+
+/* Lead paragraph — slightly larger, no drop cap */
+p.lead {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  font-style: italic;
+  margin-bottom: var(--s-md);
+}
+
+/* Emphasis */
+em { font-style: italic; }
+strong { font-weight: 600; color: var(--ink); }
+
+/* Small caps for abbreviations and author names */
+.sc {
+  font-variant-caps: small-caps;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LISTS — restrained, elegant
+   ═══════════════════════════════════════════════════════════════ */
+ul, ol {
+  max-width: var(--measure);
+  margin-bottom: var(--s);
+  padding-left: var(--s-md);
+}
+li {
+  margin-bottom: var(--s-xs);
+}
+ul { list-style: none; }
+ul li::before {
+  content: '—';
+  color: var(--oxblood);
+  font-weight: 400;
+  margin-right: 0.6em;
+  margin-left: -1.4em;
+}
+ol { list-style-type: lower-roman; color: var(--ink-dim); }
+ol li { padding-left: 0.4em; }
+ol li::marker { color: var(--oxblood); font-style: italic; }
+
+/* ═══════════════════════════════════════════════════════════════
+   THEOREM BOXES — the mathematical callout
+   ═══════════════════════════════════════════════════════════════ */
+.theorem, .lemma, .definition, .proof-sketch {
+  max-width: var(--measure);
+  border-left: 3px solid var(--oxblood);
+  padding: var(--s) var(--s-md);
+  margin: var(--s-md) 0;
+  background: var(--paper-deep);
+  font-size: 0.98rem;
+}
+.theorem .label, .lemma .label, .definition .label, .proof-sketch .label {
+  display: block;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.12em;
+  color: var(--oxblood);
+  font-weight: 600;
+  font-size: 0.85em;
+  margin-bottom: var(--s-xs);
+}
+.theorem p:last-child, .lemma p:last-child,
+.definition p:last-child, .proof-sketch p:last-child { margin-bottom: 0; }
+
+/* Proof marker */
+.qed::after {
+  content: ' ∎';
+  color: var(--oxblood);
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MATHEMATICS — inline and display
+   ═══════════════════════════════════════════════════════════════ */
+.math, code.math {
+  font-family: var(--ff-mono);
+  font-size: 0.92em;
+  color: var(--oxblood-dim);
+  background: transparent;
+}
+
+.display-math {
+  font-family: var(--ff-mono);
+  font-size: 1.05em;
+  text-align: center;
+  padding: var(--s) 0;
+  color: var(--ink);
+  max-width: var(--measure);
+  margin: var(--s) 0;
+}
+
+/* Code blocks — minimal, no syntax highlighting theatrics */
+pre {
+  max-width: var(--measure);
+  background: var(--paper-deep);
+  border-left: 2px solid var(--rule);
+  padding: var(--s) var(--s-md);
+  margin: var(--s) 0;
+  overflow-x: auto;
+  font-family: var(--ff-mono);
+  font-size: 0.85em;
+  line-height: 1.5;
+  color: var(--ink);
+}
+code {
+  font-family: var(--ff-mono);
+  font-size: 0.88em;
+  color: var(--oxblood-dim);
+}
+pre code { color: inherit; font-size: inherit; }
+
+/* ═══════════════════════════════════════════════════════════════
+   BLOCKQUOTE — a scholarly pull quote
+   ═══════════════════════════════════════════════════════════════ */
+blockquote {
+  max-width: var(--measure);
+  margin: var(--s-md) 0;
+  padding: var(--s) var(--s-md);
+  border-left: 3px solid var(--gold);
+  font-style: italic;
+  font-size: 1.08em;
+  color: var(--ink-dim);
+}
+blockquote cite {
+  display: block;
+  margin-top: var(--s-sm);
+  font-size: 0.85em;
+  color: var(--ink-faint);
+  font-style: normal;
+  letter-spacing: 0.02em;
+}
+blockquote cite::before { content: '— '; }
+
+/* ═══════════════════════════════════════════════════════════════
+   TABLES — figure-like, restrained
+   ═══════════════════════════════════════════════════════════════ */
+table {
+  max-width: var(--measure);
+  border-collapse: collapse;
+  margin: var(--s) 0;
+  font-size: 0.95em;
+}
+table caption {
+  caption-side: top;
+  font-style: italic;
+  color: var(--ink-dim);
+  text-align: left;
+  padding-bottom: var(--s-xs);
+  font-size: 0.9em;
+}
+th, td {
+  padding: var(--s-xs) var(--s-sm);
+  text-align: left;
+  border-bottom: 1px solid var(--rule-faint);
+}
+th {
+  border-bottom: 2px solid var(--rule);
+  font-weight: 600;
+  font-size: 0.9em;
+  letter-spacing: 0.02em;
+}
+thead th { border-top: 2px solid var(--rule); }
+
+/* ═══════════════════════════════════════════════════════════════
+   ORNAMENTS — typographic dingbats between sections
+   ═══════════════════════════════════════════════════════════════ */
+.ornament {
+  text-align: center;
+  margin: var(--s-lg) auto;
+  color: var(--gold);
+  font-size: 1.5rem;
+  letter-spacing: 0.5em;
+  max-width: var(--measure);
+}
+.ornament::before { content: '❦'; }
+.ornament.double::before { content: '❦ ❧'; }
+
+hr {
+  border: none;
+  text-align: center;
+  margin: var(--s-lg) auto;
+  max-width: var(--measure);
+}
+hr::after {
+  content: '· · ·';
+  color: var(--rule);
+  letter-spacing: 0.8em;
+  font-size: 1.4em;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FIGURES AND SIDENOTES (Tufte-style)
+   ═══════════════════════════════════════════════════════════════ */
+figure {
+  margin: var(--s-md) 0;
+  max-width: var(--measure);
+}
+figcaption {
+  font-style: italic;
+  font-size: 0.88em;
+  color: var(--ink-faint);
+  text-align: center;
+  margin-top: var(--s-xs);
+}
+
+.sidenote {
+  font-size: 0.82em;
+  color: var(--ink-faint);
+  font-style: italic;
+  display: block;
+  margin: var(--s-xs) 0;
+  padding-left: var(--s);
+  border-left: 2px solid var(--rule-faint);
+}
+
+/* Footnote reference — small superscript */
+.fn-ref {
+  font-size: 0.7em;
+  vertical-align: super;
+  color: var(--oxblood);
+  border-bottom: none;
+  margin-left: 1px;
+  font-weight: 600;
+  font-family: var(--ff-mono);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   METADATA BLOCK — top of a paper
+   ═══════════════════════════════════════════════════════════════ */
+.metadata {
+  text-align: center;
+  margin-bottom: var(--s-lg);
+  padding-bottom: var(--s-md);
+  border-bottom: 1px solid var(--rule-faint);
+  max-width: var(--measure);
+  margin-left: auto;
+  margin-right: auto;
+}
+.metadata .author {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.15em;
+  color: var(--ink);
+  font-size: 0.9em;
+  margin-bottom: var(--s-xs);
+}
+.metadata .affiliation {
+  font-style: italic;
+  color: var(--ink-faint);
+  font-size: 0.85em;
+}
+.metadata .date {
+  font-variant-numeric: oldstyle-nums;
+  color: var(--ink-faint);
+  font-size: 0.85em;
+  margin-top: var(--s-xs);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ABSTRACT BOX
+   ═══════════════════════════════════════════════════════════════ */
+.abstract {
+  max-width: var(--measure);
+  margin: 0 auto var(--s-lg);
+  padding: var(--s-md) var(--s-lg);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.95em;
+  color: var(--ink-dim);
+}
+.abstract .label {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.15em;
+  color: var(--oxblood);
+  font-weight: 600;
+  font-size: 0.8em;
+  display: block;
+  text-align: center;
+  margin-bottom: var(--s-xs);
+}
+.abstract p { margin-bottom: var(--s-xs); }
+.abstract p:last-child { margin-bottom: 0; }
+
+/* ═══════════════════════════════════════════════════════════════
+   LANDING PAGE — distinctive hero
+   ═══════════════════════════════════════════════════════════════ */
+.hero {
+  padding: var(--s-xxl) var(--s-lg) var(--s-xl);
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero .kicker {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.3em;
+  color: var(--oxblood);
+  font-size: 0.8rem;
+  margin-bottom: var(--s-md);
+  font-weight: 600;
+}
+.hero h1 {
+  font-family: var(--ff-head);
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin-bottom: var(--s);
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--oxblood);
+  font-weight: 400;
+}
+.hero .standfirst {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--ink-dim);
+  max-width: 38rem;
+  margin: 0 auto var(--s-md);
+  line-height: 1.55;
+}
+.hero .byline {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.2em;
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  font-weight: 600;
+}
+
+/* Index of volumes / sections */
+.volumes {
+  max-width: 800px;
+  margin: var(--s-xl) auto;
+  padding: 0 var(--s-lg);
+}
+.volume-entry {
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  align-items: baseline;
+  padding: var(--s) 0;
+  border-bottom: 1px dashed var(--rule-faint);
+  gap: var(--s);
+}
+.volume-entry:last-child { border-bottom: none; }
+.volume-entry .vol-num {
+  font-family: var(--ff-head);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--oxblood);
+  font-weight: 400;
+}
+.volume-entry .vol-title {
+  font-family: var(--ff-head);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ink);
+  border-bottom: none;
+  line-height: 1.3;
+}
+.volume-entry .vol-title em {
+  font-style: italic;
+  color: var(--oxblood);
+  font-weight: 400;
+}
+.volume-entry .vol-desc {
+  grid-column: 2;
+  font-size: 0.92rem;
+  color: var(--ink-dim);
+  margin-top: var(--s-xs);
+  font-style: italic;
+}
+.volume-entry .vol-status {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+.volume-entry .vol-status.published { color: var(--oxblood); }
+.volume-entry:hover .vol-title { color: var(--oxblood); }
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════ */
+footer {
+  margin-top: var(--s-xl);
+  padding: var(--s-lg) var(--s-lg) var(--s-md);
+  border-top: 1px solid var(--rule-faint);
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+}
+footer .colophon {
+  max-width: 600px;
+  margin: 0 auto var(--s);
+  font-style: italic;
+  line-height: 1.55;
+  font-size: 0.88rem;
+}
+footer .credits {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+}
+footer .credits a {
+  border-bottom: none;
+  color: var(--ink-faint);
+}
+footer .credits a:hover { color: var(--oxblood); }
+
+/* ═══════════════════════════════════════════════════════════════
+   BUTTONS — minimal, scholarly "further reading" style
+   ═══════════════════════════════════════════════════════════════ */
+.btn-read {
+  display: inline-block;
+  padding: var(--s-xs) var(--s);
+  font-family: var(--ff-body);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--oxblood);
+  border: none;
+  border-bottom: 1px solid var(--oxblood);
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.btn-read:hover {
+  color: var(--oxblood-dim);
+  border-bottom-color: var(--oxblood-dim);
+}
+.btn-read::after {
+  content: ' →';
+  font-family: var(--ff-mono);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 720px) {
+  html { font-size: 16px; }
+  .page, .page-wide { padding: var(--s-xl) var(--s-md) var(--s-lg); }
+  .hero { padding: var(--s-xl) var(--s-md); }
+  nav { padding: var(--s-sm) var(--s-md); }
+  .nav-wrap { gap: var(--s-sm); }
+  .volume-entry { grid-template-columns: 2rem 1fr; }
+  .volume-entry .vol-status { grid-column: 2; margin-top: var(--s-xs); }
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(139, 38, 53, 0.15);
+  color: var(--oxblood-dim);
+}

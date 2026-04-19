@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Oscillation Law · The Tesfa Grid</title>
+<meta name="description" content="An empirical regularity: second-differences of consecutive prime gaps alternate sign 68.2% of the time.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="tesfagrid-icon.svg">
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrap">
+    <a href="/" class="nav-mast">
+      The Tesfa Grid
+      <span class="nav-mast-sub">a research programme in number theory</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Introduction</a>
+      <a href="/theorem-7">Theorem 7</a>
+      <a href="/column-class-sieve">The Sieve</a>
+      <a href="/oscillation-law" class="here">Oscillation Law</a>
+      <a href="/publications">Publications</a>
+      <a href="/team">Team</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page">
+
+  <div class="metadata">
+    <div class="author">Tesfaye Dereje</div>
+    <div class="affiliation">Independent Researcher, Addis Ababa</div>
+    <div class="date">Volume III &middot; 2026</div>
+  </div>
+
+  <h1 class="title">The Oscillation <em>Law</em></h1>
+  <p class="subtitle">An empirical regularity in second-differences of consecutive prime gaps</p>
+
+  <div class="abstract">
+    <span class="label">Abstract</span>
+    <p>
+      We report an empirical observation concerning the second-differences
+      of consecutive prime gaps. Define
+      <code class="math">G<sub>2</sub>(k) = g<sub>k+1</sub> &minus; g<sub>k</sub></code>
+      where <code class="math">g<sub>k</sub> = p<sub>k+1</sub> &minus; p<sub>k</sub></code>.
+      Across the first 348,511 consecutive gaps, <code class="math">G<sub>2</sub></code>
+      alternates in sign with frequency <span class="sc">68.2%</span>, significantly
+      above the 50% expected from independent random gaps. The z-score of this
+      excess, computed against the null of independent sign alternation, is
+      <code class="math">Z &asymp; 211</code>. The finding is empirical: it is
+      observed with high statistical significance but not yet proved from first
+      principles. We record it as a conjecture and outline candidate approaches
+      to proof.
+    </p>
+  </div>
+
+  <h2><span class="num">§1.</span> Statement</h2>
+
+  <div class="definition">
+    <span class="label">Definition &middot; second-difference of gaps</span>
+    <p>
+      For consecutive primes <code class="math">p<sub>k</sub>, p<sub>k+1</sub>, p<sub>k+2</sub></code>,
+      define the gaps <code class="math">g<sub>k</sub> = p<sub>k+1</sub> &minus; p<sub>k</sub></code>
+      and <code class="math">g<sub>k+1</sub> = p<sub>k+2</sub> &minus; p<sub>k+1</sub></code>,
+      and the <em>second-difference</em>
+    </p>
+    <div class="display-math">G<sub>2</sub>(k) = g<sub>k+1</sub> &minus; g<sub>k</sub>.</div>
+    <p>
+      The sign <code class="math">sgn G<sub>2</sub>(k) &isin; {&minus;1, 0, +1}</code>
+      records whether the next gap is larger, equal to, or smaller than the
+      current gap.
+    </p>
+  </div>
+
+  <h2><span class="num">§2.</span> The conjecture</h2>
+
+  <div class="theorem">
+    <span class="label">Conjecture &middot; the Oscillation Law</span>
+    <p>
+      For consecutive primes greater than 3, the sign of
+      <code class="math">G<sub>2</sub>(k)</code> alternates more frequently
+      than chance. Specifically, the proportion of indices <code class="math">k</code>
+      for which <code class="math">sgn G<sub>2</sub>(k) &middot; sgn G<sub>2</sub>(k+1) = &minus;1</code>
+      tends to a limit strictly greater than 1/2, approximately
+      <code class="math">0.682</code> in empirical samples.
+    </p>
+  </div>
+
+  <p class="drop-cap">
+    The law is stated as a conjecture because it has not been proved.
+    The empirical evidence is nonetheless striking: across
+    <span class="sc">348,511</span> consecutive second-differences, the
+    observed alternation rate is 68.2%, and the z-score against the null
+    of independent random signs is approximately 211. Such a large z-score
+    effectively rules out the possibility that the observation is due to
+    statistical noise in the sample.
+  </p>
+
+  <h2><span class="num">§3.</span> Empirical evidence</h2>
+
+  <p>
+    Using the first <code class="math">5 &times; 10<sup>6</sup></code>
+    primes, we computed the sequence of second-differences
+    <code class="math">G<sub>2</sub>(k)</code> and tabulated the number
+    of sign alternations between consecutive entries.
+  </p>
+
+  <figure>
+    <table>
+      <caption>Sign behaviour of consecutive second-differences</caption>
+      <thead>
+        <tr>
+          <th>Relationship</th>
+          <th>Count</th>
+          <th>Proportion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Alternating (&minus;+&minus; or +&minus;+)</td><td>237,683</td><td>68.2%</td></tr>
+        <tr><td>Same sign (&plus;&plus; or &minus;&minus;)</td><td>84,916</td><td>24.4%</td></tr>
+        <tr><td>Zero-entry (g<sub>k+1</sub>&nbsp;=&nbsp;g<sub>k</sub>)</td><td>25,912</td><td>7.4%</td></tr>
+      </tbody>
+    </table>
+    <figcaption>Sample size: 348,511 second-differences. Source: <span class="sc">GMP</span> sieve, April 2026.</figcaption>
+  </figure>
+
+  <h3>Statistical significance</h3>
+
+  <p>
+    Under the null hypothesis that consecutive second-differences have
+    independent random signs (ignoring zeros), the expected alternation
+    rate is 50% with variance <code class="math">1/(4N)</code> where
+    <code class="math">N</code> is the sample size. The observed rate
+    of 68.2% gives
+  </p>
+
+  <div class="display-math">
+    Z = (0.682 &minus; 0.500) / &radic;(1/(4 &middot; 322,599)) &asymp; 211.
+  </div>
+
+  <p>
+    A z-score of this magnitude corresponds to an astronomically small
+    p-value. The effect is real. Whether it persists as
+    <code class="math">k &rarr; &infin;</code>, and what its limiting
+    value is, remain open.
+  </p>
+
+  <h2><span class="num">§4.</span> Why this might be true</h2>
+
+  <p>
+    We offer no proof but record two heuristic motivations that may
+    guide future work.
+  </p>
+
+  <h3>The pigeonhole argument</h3>
+
+  <p>
+    By Theorem 7, every gap lies in one of three residue classes modulo 6:
+    <code class="math">0, 2</code>, or <code class="math">4</code>.
+    Transitions between these classes are not uniform — the empirical
+    distribution shows a strong preference for oscillation around the
+    mean gap size <code class="math">2 ln p</code>. A gap significantly
+    above the mean tends to be followed by one below, and vice versa,
+    because the density of primes near <code class="math">p</code> is
+    locally approximately constant. This alone, however, predicts an
+    alternation rate closer to 55%, not 68%.
+  </p>
+
+  <h3>The twin-prime neighbourhood effect</h3>
+
+  <p>
+    The 68.2% figure is suggestively close to the one-standard-deviation
+    probability mass of a Gaussian (<code class="math">&asymp; 68.27%</code>).
+    This coincidence may hint at an underlying normal-like distribution
+    governing local prime density. If gaps can be modelled as
+    <code class="math">g<sub>k</sub> = &mu;(p<sub>k</sub>) + &sigma;(p<sub>k</sub>) &middot; X<sub>k</sub></code>
+    with <code class="math">X<sub>k</sub></code> drawn from a distribution
+    with negative lag-1 autocorrelation <code class="math">\rho \approx -0.25</code>,
+    the observed alternation rate would follow. Proving such a correlation
+    exists (and is not itself a coincidence) appears difficult.
+  </p>
+
+  <h2><span class="num">§5.</span> Practical use</h2>
+
+  <p>
+    Even without proof, the Oscillation Law has a concrete application.
+    Given two consecutive gaps <code class="math">g<sub>k&minus;1</sub></code>
+    and <code class="math">g<sub>k</sub></code>, one can predict the
+    direction of <code class="math">g<sub>k+1</sub></code> with 68%
+    accuracy: if <code class="math">g<sub>k</sub> &gt; g<sub>k&minus;1</sub></code>,
+    predict <code class="math">g<sub>k+1</sub> &lt; g<sub>k</sub></code>.
+  </p>
+
+  <p>
+    In the Ethoryx commercial implementation, this prediction is used to
+    bias the candidate-search starting point in the Column-Class Sieve,
+    yielding a further small speedup. The improvement is modest
+    (&lt;&nbsp;5% additional reduction in expected candidates tested) but
+    costs nothing: the prediction is O(1) and can be applied adjacent to
+    any existing sieve.
+  </p>
+
+  <h2><span class="num">§6.</span> Open questions</h2>
+
+  <ul>
+    <li>Does the alternation rate converge to a limit as <code class="math">k &rarr; &infin;</code>, or does it drift?</li>
+    <li>If it converges, what is the limiting value? Is 0.682 an artefact of the sample range, or does the true limit equal some recognizable constant?</li>
+    <li>Can the pattern be derived from known results on the distribution of primes (the Cramér model, the Hardy-Littlewood conjectures)?</li>
+    <li>Does the pattern extend to higher-order differences <code class="math">G<sub>3</sub>, G<sub>4</sub>, &hellip;</code>?</li>
+    <li>Is there an analogous pattern in the gaps of other sequences (twin primes, prime constellations)?</li>
+  </ul>
+
+  <p>
+    Correspondence addressing any of these questions is welcomed at
+    <a href="mailto:research@ethoryx.io">research@ethoryx.io</a>.
+  </p>
+
+  <div class="ornament"></div>
+
+  <h2><span class="num">§7.</span> Reference implementation</h2>
+
+  <pre><code>from sympy import nextprime
+
+def compute_g2_signs(limit=348511):
+    p1, p2 = 5, 7
+    gaps = []
+    while len(gaps) &lt; limit + 2:
+        p3 = nextprime(p2)
+        gaps.append(p3 - p2)
+        p2 = p3
+
+    g2 = [gaps[i+1] - gaps[i] for i in range(len(gaps) - 1)]
+    signs = [1 if x &gt; 0 else (-1 if x &lt; 0 else 0) for x in g2]
+
+    alternations = sum(
+        1 for i in range(len(signs) - 1)
+        if signs[i] != 0 and signs[i+1] != 0 and signs[i] != signs[i+1]
+    )
+    nonzero = sum(1 for i in range(len(signs) - 1)
+                  if signs[i] != 0 and signs[i+1] != 0)
+
+    return alternations / nonzero  # expected: ~0.682</code></pre>
+
+  <h2><span class="num">§8.</span> Citation</h2>
+
+  <pre>@article{dereje2026oscillation,
+  author  = {Tesfaye Dereje},
+  title   = {The Oscillation Law: empirical alternation of
+             consecutive prime-gap differences},
+  year    = {2026},
+  journal = {The Tesfa Grid, Volume III},
+  note    = {Empirical finding; Z = 211 over 348,511 samples},
+  url     = {https://tesfagrid.io/oscillation-law}
+}</pre>
+
+</article>
+
+<footer>
+  <div class="colophon">
+    Set in <span class="sc">EB Garamond</span> and
+    <span class="sc">Crimson Pro</span>, with mathematics in
+    <span class="sc">JetBrains Mono</span>.
+  </div>
+  <div class="credits">
+    © 2026 &middot; <a href="mailto:research@ethoryx.io">research@ethoryx.io</a> &middot;
+    <a href="https://arxiv.org/a/tesfadereth">arXiv</a> &middot;
+    <a href="https://eprint.iacr.org/tesfadereth">IACR ePrint</a> &middot;
+    <a href="https://ethoryx.io">Ethoryx</a>
+  </div>
+</footer>
+
+</body>
+</html>

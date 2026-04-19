@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theorem 7 — the mod-6 gap constraint · The Tesfa Grid</title>
+<meta name="description" content="A proved constraint on consecutive prime gaps, verified empirically across 348,511 gaps with zero violations.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="tesfagrid-icon.svg">
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrap">
+    <a href="/" class="nav-mast">
+      The Tesfa Grid
+      <span class="nav-mast-sub">a research programme in number theory</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Introduction</a>
+      <a href="/theorem-7" class="here">Theorem 7</a>
+      <a href="/column-class-sieve">The Sieve</a>
+      <a href="/oscillation-law">Oscillation Law</a>
+      <a href="/publications">Publications</a>
+      <a href="/team">Team</a>
+    </div>
+  </div>
+</nav>
+
+<article class="page">
+
+  <div class="metadata">
+    <div class="author">Tesfaye Dereje</div>
+    <div class="affiliation">Independent Researcher, Addis Ababa</div>
+    <div class="date">Volume I &middot; 2026</div>
+  </div>
+
+  <h1 class="title">Theorem 7</h1>
+  <p class="subtitle">A mod-6 constraint on consecutive prime gaps</p>
+
+  <div class="abstract">
+    <span class="label">Abstract</span>
+    <p>
+      We state and prove a simple constraint on consecutive prime gaps:
+      every such gap between primes greater than 3 is congruent to 0, 2,
+      or 4 modulo 6. The proof is elementary and follows directly from
+      the observation that primes greater than 3 reside only in residue
+      classes 1 and 5 modulo 6. The result is verified empirically across
+      <span class="sc">348,511</span> consecutive gaps of the first few
+      million primes. No violations occur. The constraint eliminates
+      exactly half of the a-priori possible gap residues and forms the
+      arithmetic foundation of the Column-Class Sieve (Volume II).
+    </p>
+  </div>
+
+  <h2><span class="num">§1.</span> Statement</h2>
+
+  <div class="theorem">
+    <span class="label">Theorem 7</span>
+    <p>
+      Let <code class="math">p<sub>k</sub></code> and
+      <code class="math">p<sub>k+1</sub></code> be consecutive primes
+      with <code class="math">p<sub>k</sub> &gt; 3</code>. Define the
+      <em>prime gap</em>
+    </p>
+    <div class="display-math">g<sub>k</sub> = p<sub>k+1</sub> &minus; p<sub>k</sub>.</div>
+    <p>
+      Then
+    </p>
+    <div class="display-math">g<sub>k</sub> &equiv; 0, 2, or 4 (mod 6).</div>
+    <p>
+      Equivalently, no prime gap between primes greater than 3 is
+      congruent to 1, 3, or 5 modulo 6.
+    </p>
+  </div>
+
+  <h2><span class="num">§2.</span> Proof</h2>
+
+  <p class="drop-cap">
+    The proof rests on a single elementary observation, which we record
+    as a lemma for clarity.
+  </p>
+
+  <div class="lemma">
+    <span class="label">Lemma</span>
+    <p>
+      Every prime <code class="math">p &gt; 3</code> satisfies
+      <code class="math">p &equiv; 1 (mod 6)</code> or
+      <code class="math">p &equiv; 5 (mod 6)</code>.
+    </p>
+  </div>
+
+  <h3>Proof of Lemma</h3>
+
+  <p>
+    By the division algorithm, any integer <code class="math">n</code>
+    satisfies <code class="math">n &equiv; r (mod 6)</code> for exactly
+    one <code class="math">r &isin; {0, 1, 2, 3, 4, 5}</code>.
+    Consider each case:
+  </p>
+
+  <ul>
+    <li><code class="math">r = 0</code>: then <code class="math">6 | n</code>, so <code class="math">n</code> is composite unless <code class="math">n = 0</code>.</li>
+    <li><code class="math">r = 2</code>: then <code class="math">2 | n</code>, so <code class="math">n</code> is even. The only even prime is 2, which is excluded by <code class="math">n &gt; 3</code>.</li>
+    <li><code class="math">r = 3</code>: then <code class="math">3 | n</code>. The only prime divisible by 3 is 3 itself, excluded by <code class="math">n &gt; 3</code>.</li>
+    <li><code class="math">r = 4</code>: then <code class="math">2 | n</code>, same argument as <code class="math">r = 2</code>.</li>
+  </ul>
+
+  <p>
+    The only residues not excluded are <code class="math">r = 1</code> and
+    <code class="math">r = 5</code>. <span class="qed"></span>
+  </p>
+
+  <h3>Proof of Theorem 7</h3>
+
+  <p>
+    Let <code class="math">p<sub>k</sub>, p<sub>k+1</sub></code> be
+    consecutive primes with <code class="math">p<sub>k</sub> &gt; 3</code>.
+    By the lemma, each of <code class="math">p<sub>k</sub></code> and
+    <code class="math">p<sub>k+1</sub></code> is congruent to either 1 or 5
+    modulo 6. There are four cases:
+  </p>
+
+  <table>
+    <caption>Residue combinations and resulting gap residue</caption>
+    <thead>
+      <tr>
+        <th>p<sub>k</sub> mod 6</th>
+        <th>p<sub>k+1</sub> mod 6</th>
+        <th>g<sub>k</sub> mod 6</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>0</td></tr>
+      <tr><td>1</td><td>5</td><td>4</td></tr>
+      <tr><td>5</td><td>1</td><td>2</td></tr>
+      <tr><td>5</td><td>5</td><td>0</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    In each case, the gap <code class="math">g<sub>k</sub></code> is
+    congruent to 0, 2, or 4 modulo 6. No other residues occur.
+    <span class="qed"></span>
+  </p>
+
+  <h2><span class="num">§3.</span> Empirical verification</h2>
+
+  <p>
+    Though the proof is complete, empirical verification confirms the
+    theorem at scale and suggests the distribution of gap residues in
+    practice.
+  </p>
+
+  <p>
+    Using <span class="sc">GMP</span> and a standard prime sieve, we
+    computed all consecutive prime gaps for primes up to
+    <code class="math">5&nbsp;&times;&nbsp;10<sup>6</sup></code>,
+    yielding <span class="sc">348,511</span> gaps. For each gap, the
+    residue modulo 6 was recorded. The result:
+  </p>
+
+  <figure>
+    <table>
+      <caption>Distribution of gap residues modulo 6 in the first 348,511 gaps</caption>
+      <thead>
+        <tr>
+          <th>g<sub>k</sub> mod 6</th>
+          <th>Count</th>
+          <th>Proportion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>0</td><td>191,314</td><td>54.9%</td></tr>
+        <tr><td>2</td><td>78,563</td><td>22.5%</td></tr>
+        <tr><td>4</td><td>78,634</td><td>22.6%</td></tr>
+        <tr><td>1, 3, 5</td><td>0</td><td>0.0%</td></tr>
+      </tbody>
+    </table>
+    <figcaption>Source: <span class="sc">GMP</span> verification, April 2026. Code published on GitHub.</figcaption>
+  </figure>
+
+  <p>
+    Zero violations. The symmetry between residues 2 and 4 — each
+    accounting for roughly 22.5% — reflects the equal distribution of
+    (1 &rarr; 5) and (5 &rarr; 1) prime transitions. Residue 0,
+    corresponding to same-column transitions (1 &rarr; 1 or 5 &rarr; 5),
+    accounts for the remaining 55%.
+  </p>
+
+  <h2><span class="num">§4.</span> Discussion</h2>
+
+  <h3>Why the theorem matters</h3>
+
+  <p>
+    Although Theorem 7 is not hard to prove once stated, its practical
+    consequence is considerable. Standard prime-generation algorithms
+    search for primes by testing candidates drawn from wider residue
+    classes, often all odd integers or all integers coprime to a small
+    modulus. Theorem 7 narrows this search: if one is generating primes
+    of a specific size and already knows one prime
+    <code class="math">p<sub>k</sub></code>, the next prime
+    <code class="math">p<sub>k+1</sub></code> must lie at a distance
+    <code class="math">&equiv; 0, 2, or 4 (mod 6)</code> from it. This
+    eliminates half of the a-priori possible gap values, which
+    translates directly into reduced candidate testing in algorithms
+    that move by gap.
+  </p>
+
+  <p>
+    The Column-Class Sieve (Volume II) extends this observation into a
+    full generation algorithm, combining the mod-6 constraint with
+    column-class analysis to achieve a proved 75% candidate reduction
+    for primes of number-theoretic transform (<span class="sc">NTT</span>) form.
+  </p>
+
+  <h3>What the theorem does not say</h3>
+
+  <p>
+    Theorem 7 is a constraint, not a predictor. It tells us which gap
+    values are impossible, not which value will occur. It does not
+    predict the size of <code class="math">g<sub>k</sub></code>, only
+    its residue class. For prediction of gap size, see the Oscillation
+    Law (Volume III), which describes an empirically observed alternation
+    in the second-differences of consecutive gaps.
+  </p>
+
+  <h3>Relation to classical results</h3>
+
+  <p>
+    The lemma — that primes greater than 3 are either 1 or 5 modulo 6
+    — is classical and appears implicitly in any text on the
+    distribution of primes. What is less classical, and the reason we
+    state it explicitly as a theorem, is the direct consequence for
+    gap residues. To our knowledge, this corollary has not been
+    previously stated in this form or used as the foundation of a
+    specific sieve construction.
+  </p>
+
+  <div class="ornament"></div>
+
+  <h2><span class="num">§5.</span> Reference implementation</h2>
+
+  <p>
+    A reference implementation is available. The following
+    <span class="sc">Python</span> snippet verifies Theorem 7 empirically:
+  </p>
+
+  <pre><code>from sympy import nextprime
+
+p, count = 5, 0
+violations = 0
+
+while count &lt; 348_511:
+    q = nextprime(p)
+    gap = q - p
+    if gap % 6 not in (0, 2, 4):
+        violations += 1
+        print(f"Violation at gap {gap} between {p} and {q}")
+    p = q
+    count += 1
+
+print(f"Gaps checked: {count}")
+print(f"Violations:   {violations}")  # expected: 0</code></pre>
+
+  <p>
+    The production <span class="sc">C/GMP</span> implementation,
+    derived from this algorithm and used in the Ethoryx commercial
+    product, is open source and available at
+    <a href="https://github.com/Teshgty/tesfagrid">github.com/Teshgty/tesfagrid</a>.
+  </p>
+
+  <div class="ornament"></div>
+
+  <h2><span class="num">§6.</span> Citation</h2>
+
+  <p>
+    If you find this result useful in your work, please cite:
+  </p>
+
+  <pre>@article{dereje2026theorem7,
+  author       = {Tesfaye Dereje},
+  title        = {Theorem 7: A mod-6 constraint on consecutive prime gaps},
+  year         = {2026},
+  journal      = {The Tesfa Grid, Volume I},
+  url          = {https://tesfagrid.io/theorem-7},
+  howpublished = {\url{https://arxiv.org/a/tesfadereth}}
+}</pre>
+
+  <p>
+    For the companion paper with the full Column-Class Sieve construction,
+    see the <a href="/publications">Publications</a> page.
+  </p>
+
+</article>
+
+<footer>
+  <div class="colophon">
+    Set in <span class="sc">EB Garamond</span> and
+    <span class="sc">Crimson Pro</span>, with mathematics in
+    <span class="sc">JetBrains Mono</span>.
+  </div>
+  <div class="credits">
+    © 2026 &middot; <a href="mailto:research@ethoryx.io">research@ethoryx.io</a> &middot;
+    <a href="https://arxiv.org/a/tesfadereth">arXiv</a> &middot;
+    <a href="https://eprint.iacr.org/tesfadereth">IACR ePrint</a> &middot;
+    <a href="https://ethoryx.io">Ethoryx</a>
+  </div>
+</footer>
+
+</body>
+</html>

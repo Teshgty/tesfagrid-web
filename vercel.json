@@ -1,0 +1,15 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/theorem-7", "dest": "/theorem-7.html" },
+    { "src": "/column-class-sieve", "dest": "/column-class-sieve.html" },
+    { "src": "/oscillation-law", "dest": "/oscillation-law.html" },
+    { "src": "/publications", "dest": "/publications.html" },
+    { "src": "/team", "dest": "/team.html" },
+    { "src": "/style.css", "dest": "/style.css" },
+    { "src": "/tesfagrid-icon.svg", "dest": "/tesfagrid-icon.svg" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}
