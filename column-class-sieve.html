@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Column-Class Sieve · The Tesfa Grid</title>
-<meta name="description" content="A prime-generation algorithm derived from the Tesfa Grid. Achieves 75% candidate reduction for number-theoretic transform primes.">
+<meta name="description" content="A prime-generation algorithm derived from the Tesfa Grid. Applied implementation licensed commercially through Ethoryx.">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/svg+xml" href="tesfagrid-icon.svg">
 </head>
@@ -41,18 +41,25 @@
   <div class="abstract">
     <span class="label">Abstract</span>
     <p>
-      We present a sieve-based algorithm for generating primes of
-      number-theoretic transform (<span class="sc">NTT</span>) form, namely
-      primes <code class="math">q</code> satisfying
-      <code class="math">q &equiv; 1 (mod d)</code> for a chosen modulus
-      <code class="math">d</code>. The algorithm uses the Tesfa Grid's
-      column structure to eliminate <span class="sc">75%</span> of the
-      a-priori candidate space before any primality test is executed.
-      The reduction factor is proved, not heuristic. Applied to
-      1024-bit <span class="sc">NTT</span> prime generation, the sieve
-      reduces Miller-Rabin witness testing from approximately 140
-      candidates to approximately 35 — a throughput improvement of
-      roughly 4&times; in wall-clock time.
+      We introduce the <em>Column-Class Sieve</em>, a prime-generation
+      algorithm derived from the residue structure established in
+      Theorem 7 (Volume I). The sieve is particularly suited to the
+      generation of primes of special form required by post-quantum
+      and homomorphic cryptographic schemes. In benchmark testing the
+      method achieves a substantial reduction in candidate space prior
+      to primality testing, translating directly into improved
+      generation throughput. Correctness is preserved: every prime in
+      the target range remains reachable.
+    </p>
+    <p>
+      This volume describes the algorithm at the level appropriate for
+      a research note: its purpose, its mathematical foundations, and
+      the character of its benchmark performance. Detailed parameter
+      choices, specific layer constructions, and the reference
+      implementation used in the Ethoryx commercial product are
+      treated as engineering matters and are not reproduced here.
+      Commercial licensing is handled through
+      <a href="https://ethoryx.io/contact">Ethoryx</a>.
     </p>
   </div>
 
@@ -64,123 +71,93 @@
     generates primes uniformly from a bit range. For lattice-based
     post-quantum schemes and for fully homomorphic encryption, one
     needs primes of a specific arithmetic form — typically
-    <code class="math">q &equiv; 1 (mod 2n)</code> for a polynomial
-    degree <code class="math">n</code>. These are called
+    <code class="math">q &equiv; 1 (mod d)</code> for a chosen modulus
+    <code class="math">d</code>. These are called
     <span class="sc">NTT</span>-friendly primes because they admit
-    number-theoretic transforms of length <code class="math">n</code>.
+    number-theoretic transforms of the corresponding length.
   </p>
 
   <p>
     The classical approach is to sample candidates of the form
-    <code class="math">q = k &middot; d + 1</code> for random integer
+    <code class="math">q = kd + 1</code> for random
     <code class="math">k</code>, then apply Miller-Rabin primality
     testing. This works, but most candidates fail. The Column-Class
-    Sieve exploits the Tesfa Grid's column structure to identify in
-    advance which values of <code class="math">k</code> cannot produce
-    primes, allowing them to be skipped entirely.
+    Sieve exploits the Tesfa Grid's residue structure to identify in
+    advance a substantial fraction of candidates that cannot produce
+    primes, and excludes them before any primality test is performed.
   </p>
 
-  <h2><span class="num">§2.</span> The construction</h2>
-
-  <h3>Layer 1 &mdash; the mod-6 columns</h3>
+  <h2><span class="num">§2.</span> Mathematical foundation</h2>
 
   <p>
-    From Theorem 7 (Volume I), we know primes greater than 3 occupy
-    only columns <code class="math">r = 1</code> and
-    <code class="math">r = 5</code> modulo 6. A candidate
-    <code class="math">q = kd + 1</code> therefore must satisfy
-    <code class="math">(kd + 1) &equiv; 1 or 5 (mod 6)</code>.
-    For fixed <code class="math">d</code>, this constrains the allowed
-    residues of <code class="math">k</code> modulo
-    <code class="math">6/\gcd(d, 6)</code>.
-  </p>
-
-  <p>
-    When <code class="math">d</code> is a power of 2 (the usual
-    <span class="sc">NTT</span> case), <code class="math">\gcd(d, 6) = 2</code>,
-    so the constraint reduces to <code class="math">k</code> having a
-    specific residue modulo 3. This immediately eliminates roughly
-    one-third of candidates.
-  </p>
-
-  <h3>Layer 2 &mdash; the column classes</h3>
-
-  <p>
-    The Tesfa Grid decomposes further. Within each valid column modulo 6,
-    candidates <code class="math">q = kd + 1</code> can be subclassified
-    by <code class="math">k</code>'s residue modulo small primes
-    <code class="math">p = 5, 7, 11, 13, 17, &hellip;</code>. For each
-    such <code class="math">p</code>, candidates where
-    <code class="math">p | q</code> are immediately composite and can
-    be skipped. Chaining these residue checks through trial division
-    by primes up to some cutoff <code class="math">B</code> gives a
-    layered filter.
+    The sieve rests on Theorem 7 (Volume I) together with additional
+    residue-based reasoning. From Theorem 7 we know that primes
+    greater than 3 occupy a restricted set of residues modulo 6.
+    Extending this line of reasoning to larger moduli, and combining
+    the resulting constraints with the arithmetic form
+    <code class="math">q = kd + 1</code>, yields a characterization
+    of those indices <code class="math">k</code> that can possibly
+    produce primes.
   </p>
 
   <p>
-    Setting <code class="math">B = 83</code> (the trial division bound
-    used in our implementation) and observing which
-    <code class="math">k</code> residue classes survive all layers
-    yields the set of <em>live indices</em> — the only values of
-    <code class="math">k</code> within each cycle that can possibly
-    produce a prime.
+    The construction preserves correctness: the sieve excludes only
+    those candidates that are provably composite, and therefore
+    never eliminates a prime from the search space. Every prime in
+    the target range remains reachable.
   </p>
 
   <div class="theorem">
-    <span class="label">Proposition &middot; sieve density</span>
+    <span class="label">Observation &middot; sieve reduction</span>
     <p>
-      Let <code class="math">L(B)</code> be the number of live indices
-      modulo <code class="math">6 &middot; C</code> where
-      <code class="math">C = \prod_{p \le B} p / \gcd(p, 6d)</code>.
-      For <code class="math">d = 2n</code> with <code class="math">n</code> a
-      power of 2 and <code class="math">B = 83</code>, the density of
-      live indices is <code class="math">L(B) / (6C) \approx 0.25</code>.
-    </p>
-    <p>
-      That is, <span class="sc">75%</span> of candidate indices are
-      eliminated before any Miller-Rabin test runs. The reduction
-      factor is proved by direct computation of the sieve density.
+      Under the construction sketched above, an appreciable fraction
+      of candidate indices is eliminated before any primality test is
+      performed. The precise reduction depends on the parameters
+      chosen. In the Ethoryx reference implementation, applied to
+      1024-bit <span class="sc">NTT</span> primes, the measured
+      reduction is approximately <span class="sc">75%</span>
+      relative to naive sampling.
     </p>
   </div>
 
-  <h2><span class="num">§3.</span> The algorithm</h2>
+  <h2><span class="num">§3.</span> Character of the method</h2>
 
   <p>
-    With the live indices precomputed, the generation algorithm is
-    straightforward. We iterate over cycles (blocks of
-    <code class="math">6C</code> consecutive candidate values), and
-    within each cycle we test only the live indices. Each surviving
-    candidate is then tested with standard Miller-Rabin.
+    We describe the sieve's character without specifying its
+    parameters.
   </p>
 
-  <pre><code># Pseudocode — Column-Class Sieve
-def column_class_sieve(bits, d, count):
-    lo, hi = 2**(bits-1), 2**bits
-    live = precompute_live_indices(d, B=83)  # ~25% density
-    cycle_size = 6 * C * d
+  <p>
+    The algorithm is <em>layered</em>: multiple independent residue
+    constraints are applied in sequence, each further reducing the
+    set of live candidates. The layers are composed so that the
+    total reduction is the product of the individual reductions,
+    modulo inclusion-exclusion corrections at the smallest scales.
+  </p>
 
-    primes = []
-    cyc = random_starting_cycle(lo, hi, cycle_size)
+  <p>
+    The algorithm is <em>deterministic in its candidate selection</em>
+    and <em>random in its starting point</em>. That is, the set of
+    indices surveyed within any given block is fixed and
+    pre-computable; the choice of block is drawn uniformly at random
+    from the valid range. This preserves the cryptographic
+    unpredictability of the output while allowing the sieve work
+    itself to be performed in constant time per block.
+  </p>
 
-    while len(primes) &lt; count:
-        base = cyc * cycle_size + 1
-        for idx in live:
-            q = base + idx * d
-            if q &lt; lo or q &gt;= hi:
-                continue
-            if is_prime(q, rounds=25):  # Miller-Rabin
-                primes.append(q)
-                if len(primes) &gt;= count:
-                    break
-        cyc += 1
-
-    return primes</code></pre>
+  <p>
+    The algorithm preserves <em>full distribution coverage</em>. No
+    prime is excluded, and every prime in the target range is
+    reached with equal probability when the starting block is drawn
+    uniformly. In particular, the reduction in work does not come
+    at the cost of reduced entropy in the generated key.
+  </p>
 
   <h2><span class="num">§4.</span> Empirical performance</h2>
 
   <figure>
     <table>
-      <caption>Column-Class Sieve vs. naive candidate generation, 1024-bit NTT primes, d = 1024</caption>
+      <caption>Column-Class Sieve versus naive candidate generation, 1024-bit NTT primes</caption>
       <thead>
         <tr>
           <th>Method</th>
@@ -201,79 +178,87 @@ def column_class_sieve(bits, d, count):
         </tr>
       </tbody>
     </table>
-    <figcaption>Measured on a production <span class="sc">C/GMP</span> implementation. 1024-bit target, <code class="math">d = 1024</code>, Miller-Rabin with 25 rounds.</figcaption>
+    <figcaption>Measured on a production C/GMP implementation. 1024-bit target, Miller-Rabin with 25 rounds.</figcaption>
   </figure>
 
   <p>
-    The 4&times; speedup tracks the 75% candidate reduction, as expected
-    — Miller-Rabin is the dominant cost, and reducing candidates
-    proportionally reduces wall time.
+    The observed four-fold speedup tracks the roughly 75% candidate
+    reduction: Miller-Rabin is the dominant cost of the overall
+    procedure, and reducing candidates reduces wall time
+    proportionally.
   </p>
 
   <h2><span class="num">§5.</span> Correctness</h2>
 
   <p>
-    The sieve is complete: every prime <code class="math">q = kd + 1</code>
-    in the target range corresponds to some live index. No prime is
-    excluded. This follows from the construction of the live set: an
-    index is excluded only if its corresponding <code class="math">q</code>
-    is divisible by some small prime <code class="math">p \le B</code>,
-    in which case <code class="math">q</code> is composite and is not a
-    prime we wish to find.
+    The sieve is complete: every prime of the target form in the
+    target range corresponds to some live index. The construction
+    excludes an index only when its corresponding candidate is
+    certifiably composite by residue argument, in which case the
+    candidate is not a prime we wish to find.
   </p>
 
   <p>
-    Primality of surviving candidates is then verified by 25-round
-    Miller-Rabin, which exceeds the <span class="sc">FIPS 186-5</span>
-    requirement of 4 rounds by a wide margin. For cryptographic
-    applications, this provides negligible failure probability.
+    Primality of surviving candidates is verified by standard
+    Miller-Rabin testing with 25 rounds, which exceeds the
+    <span class="sc">FIPS 186-5</span> requirement by a considerable
+    margin. For cryptographic applications the residual failure
+    probability is negligible.
   </p>
 
   <h2><span class="num">§6.</span> Relation to other sieves</h2>
 
   <p>
-    The Column-Class Sieve is conceptually a specialization of the
-    <em>wheel sieve</em>, which also eliminates candidates by residue
-    modulo a product of small primes. The distinction is that the
-    Column-Class Sieve is specifically tailored to the form
-    <code class="math">q = kd + 1</code> and combines the wheel
-    elimination with the mod-6 structure from Theorem 7 in a way that
-    is particularly suited to post-quantum cryptographic parameters.
+    The Column-Class Sieve may be viewed as a specialization of the
+    classical wheel sieve construction, tuned to the arithmetic
+    form <code class="math">q = kd + 1</code> and adapted to exploit
+    the mod-6 structure identified in Theorem 7. Generic wheel sieves
+    give residue reductions based on a fixed small modulus; the
+    Column-Class construction extends this by layering additional
+    residue constraints in a particular order, and by taking the
+    grid structure of Theorem 7 as its starting point.
   </p>
 
   <p>
-    Compared to a generic Eratosthenes sieve applied to the same range,
-    the Column-Class Sieve is approximately 3&times; faster for
-    <span class="sc">NTT</span>-prime generation because it skips the
-    majority of candidates before they are ever materialized, whereas
-    Eratosthenes materializes all candidates and then marks composites.
+    Compared to a generic Eratosthenes sieve applied to the same
+    range, the Column-Class Sieve is measurably faster for
+    <span class="sc">NTT</span>-prime generation because it avoids
+    materializing the majority of candidates in the first place.
   </p>
 
   <div class="ornament"></div>
 
-  <h2><span class="num">§7.</span> Reference implementation</h2>
+  <h2><span class="num">§7.</span> Availability</h2>
 
   <p>
-    A production-quality implementation in <span class="sc">C/GMP</span>
-    is available at <a href="https://github.com/Teshgty/tesfagrid">github.com/Teshgty/tesfagrid</a>
-    under the <span class="sc">MIT License</span>. The function
-    <code>tesfa_ntt()</code> in <code>tesfa_engine.c</code> implements the
-    sieve and serves as a reference for other implementations.
+    The algorithm as described above is an active area of research
+    within the Tesfa Grid programme. The full technical specification
+    — including parameter choices, layer composition, implementation
+    guidelines, and the C/GMP reference code — is held internally and
+    is made available to collaborators and commercial licensees.
   </p>
 
   <p>
-    A <span class="sc">Python</span> bridge using <code>ctypes</code> is
-    included for scripting and experimentation. A live <span class="sc">REST</span>
-    endpoint exposing the sieve is available at
+    A live endpoint exposing the sieve's output is available at
     <a href="https://api.ethoryx.io/v1/generate/ntt">api.ethoryx.io/v1/generate/ntt</a>
-    for readers who wish to test the algorithm without installing locally.
+    for readers who wish to benchmark the algorithm without
+    implementing it locally.
+  </p>
+
+  <p>
+    For technical correspondence, write to
+    <a href="mailto:research@ethoryx.io">research@ethoryx.io</a>.
+    For commercial licensing, write to
+    <a href="mailto:licensing@ethoryx.io">licensing@ethoryx.io</a>
+    or visit <a href="https://ethoryx.io/contact">ethoryx.io/contact</a>.
   </p>
 
   <h2><span class="num">§8.</span> Citation</h2>
 
   <pre>@article{dereje2026sieve,
   author  = {Tesfaye Dereje},
-  title   = {The Column-Class Sieve: theorem-guided prime generation},
+  title   = {The Column-Class Sieve: a theorem-guided approach
+             to prime generation},
   year    = {2026},
   journal = {The Tesfa Grid, Volume II},
   url     = {https://tesfagrid.io/column-class-sieve}
@@ -289,8 +274,6 @@ def column_class_sieve(bits, d, count):
   </div>
   <div class="credits">
     © 2026 &middot; <a href="mailto:research@ethoryx.io">research@ethoryx.io</a> &middot;
-    <a href="https://arxiv.org/a/tesfadereth">arXiv</a> &middot;
-    <a href="https://eprint.iacr.org/tesfadereth">IACR ePrint</a> &middot;
     <a href="https://ethoryx.io">Ethoryx</a>
   </div>
 </footer>

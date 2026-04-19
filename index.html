@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Tesfa Grid — a geometric framework for prime numbers</title>
-<meta name="description" content="Independent mathematical research on the hidden structure of prime numbers. Home of Theorem 7, the Column-Class Sieve, and the Oscillation Law.">
+<meta name="description" content="Independent mathematical research on the hidden structure of prime numbers.">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/svg+xml" href="tesfagrid-icon.svg">
 </head>
@@ -31,11 +31,13 @@
   <div class="kicker">A research programme</div>
   <h1>A geometric framework<br>for the <em>structure of primes</em></h1>
   <p class="standfirst">
-    The Tesfa Grid is a 6&times;<em>C</em> matrix in which every prime greater than 3
-    occupies exactly two columns. What appears chaotic at the level of individual
-    primes becomes predictable at the level of rows and residues. This is the
-    foundation of a proved theorem, a faster sieve, and a growing body of work
-    on the deep structure of number theory.
+    The Tesfa Grid is a matrix arrangement in which every prime greater
+    than 3 occupies a restricted set of columns. What appears chaotic
+    at the level of individual primes becomes more ordered at the level
+    of rows and residues. This observation is the foundation of a
+    research programme: a growing body of theorems, empirical findings,
+    and applied constructions concerning the deep structure of number
+    theory.
   </p>
   <div class="byline">Tesfaye Dereje &middot; Addis Ababa &middot; 2026</div>
 </section>
@@ -47,73 +49,71 @@
   <div class="abstract">
     <span class="label">Abstract</span>
     <p>
-      Prime numbers are traditionally studied as points on a number line.
-      The Tesfa Grid recasts them as coordinates in a two-dimensional
-      lattice indexed by their residues modulo six. In this lattice,
-      certain theorems that are opaque on the line become visible as
-      geometric facts — proved, testable, and computationally useful.
+      Prime numbers are traditionally studied as points on a number
+      line. The Tesfa Grid recasts them as coordinates in a
+      two-dimensional lattice indexed by their residues modulo six.
+      In this lattice, certain regularities that are obscure on the
+      integer line become more visible, and can be stated as theorems,
+      verified empirically, or put to computational use.
     </p>
     <p>
-      This programme has produced one proved theorem (a gap constraint
-      holding across <span class="sc">348,511</span> consecutive prime gaps
-      with zero violations), one new algorithm (the Column-Class Sieve,
-      which reduces candidate space by <span class="sc">75%</span> for
-      number-theoretic transform primes), and one empirical regularity
-      (the Oscillation Law governing second-differences of gaps).
-      Each finding has both mathematical and cryptographic consequence.
+      This programme has so far produced three research notes. The
+      first (Theorem 7) is a proved constraint on consecutive prime
+      gaps, verified across <span class="sc">348,511</span> gaps with
+      zero violations. The second (the Column-Class Sieve) is a
+      prime-generation method derived from the first. The third (the
+      Oscillation Law) is an empirical regularity governing
+      second-differences of gaps, stated as a conjecture. Further
+      volumes are in preparation.
     </p>
   </div>
 
   <h2><span class="num">I.</span> Why a grid</h2>
 
   <p class="drop-cap">
-    The prime numbers refuse to cooperate with most attempts at prediction.
-    Gauss, Riemann, Littlewood, and Erdős each advanced the theory by degrees
-    but the primes remain, in Erdős's phrase, a subject about which
-    mathematicians know little and suspect less. This programme does not
-    claim to resolve what they could not. It claims something smaller and
-    more concrete: that certain patterns, invisible on the integer line,
-    become plain when primes are displayed on a grid indexed by their
-    residues modulo six.
+    The prime numbers refuse to cooperate with most attempts at
+    prediction. Gauss, Riemann, Littlewood, and Erdős each advanced
+    the theory by degrees but the primes remain, in Erdős's phrase,
+    a subject about which mathematicians know little and suspect less.
+    This programme does not claim to resolve what they could not. It
+    claims something smaller and more concrete: that certain patterns,
+    obscure on the integer line, become more apparent when primes are
+    displayed on a grid indexed by their residues modulo six, and that
+    these patterns can be stated, tested, and sometimes put to use.
   </p>
 
   <p>
     The construction is elementary. Every integer <code class="math">n &gt; 3</code>
-    satisfies exactly one of the congruences
-    <code class="math">n &equiv; r&nbsp;(mod&nbsp;6)</code> for
-    <code class="math">r &isin; {0, 1, 2, 3, 4, 5}</code>. Since
+    satisfies <code class="math">n &equiv; r (mod 6)</code> for exactly
+    one <code class="math">r &isin; {0, 1, 2, 3, 4, 5}</code>. Since
     <code class="math">6 = 2&middot;3</code>, any integer with residue
-    <code class="math">0, 2, 3, 4</code> is composite. Primes greater than 3
-    therefore occupy only columns <code class="math">r = 1</code> and
-    <code class="math">r = 5</code>. The Tesfa Grid arranges integers in
-    this six-column layout and asks what becomes visible when primes
-    are marked.
+    <code class="math">0, 2, 3, 4</code> is composite. Primes greater
+    than 3 therefore occupy only columns <code class="math">r = 1</code>
+    and <code class="math">r = 5</code>. The Tesfa Grid arranges
+    integers in this six-column layout and asks what becomes visible
+    when primes are marked.
   </p>
 
   <h3>What the grid reveals</h3>
 
   <p>
     Three findings have been extracted from this construction so far,
-    each with a different character. The first is a proved theorem about
-    the arithmetic structure of prime gaps. The second is an algorithm
-    derived from that theorem, faster than the standard sieve when the
-    target is a prime of special form. The third is an empirical law
-    governing how gaps alternate — observed, not yet proved, but stable
-    across large samples.
+    each with a different character. The first is a proved constraint
+    on prime gaps. The second is a prime-generation method derived
+    from it. The third is an empirical regularity in gap
+    second-differences, currently stated as a conjecture.
   </p>
 
   <div class="theorem">
-    <span class="label">Theorem 7 &middot; the mod-6 gap constraint</span>
+    <span class="label">Theorem 7 &middot; a brief statement</span>
     <p>
-      For any two consecutive primes <code class="math">p<sub>k</sub></code>
-      and <code class="math">p<sub>k+1</sub></code> both greater than 3,
-      the gap <code class="math">g<sub>k</sub> = p<sub>k+1</sub> &minus; p<sub>k</sub></code>
-      satisfies <code class="math">g<sub>k</sub> &equiv; 0, 2, or 4 (mod 6)</code>.
-      No gap is ever <code class="math">&equiv; 1, 3, or 5 (mod 6)</code>.
-    </p>
-    <p>
-      Verified empirically across <span class="sc">348,511</span> consecutive
-      prime gaps. Zero violations. <a href="/theorem-7">Read the proof &rarr;</a>
+      Any two consecutive primes <code class="math">p<sub>k</sub></code>
+      and <code class="math">p<sub>k+1</sub></code> greater than 3
+      satisfy <code class="math">g<sub>k</sub> &equiv; 0, 2, or 4 (mod 6)</code>
+      for the gap <code class="math">g<sub>k</sub> = p<sub>k+1</sub> &minus; p<sub>k</sub></code>.
+      Verified empirically across <span class="sc">348,511</span>
+      consecutive gaps with zero violations.
+      <a href="/theorem-7">Read the note &rarr;</a>
     </p>
   </div>
 
@@ -140,7 +140,7 @@
       <div class="vol-num">II.</div>
       <div>
         <div class="vol-title">The Column-Class <em>Sieve</em></div>
-        <div class="vol-desc">A prime-generation algorithm derived from the grid. 75% candidate reduction, proved.</div>
+        <div class="vol-desc">A prime-generation algorithm derived from the grid. Applied form licensed through Ethoryx.</div>
       </div>
       <div class="vol-status published">Published</div>
     </div>
@@ -151,9 +151,9 @@
       <div class="vol-num">III.</div>
       <div>
         <div class="vol-title">The Oscillation <em>Law</em></div>
-        <div class="vol-desc">An empirical regularity: second-differences of consecutive gaps alternate sign 68.2% of the time.</div>
+        <div class="vol-desc">An empirical regularity: second-differences of consecutive gaps alternate sign more often than chance.</div>
       </div>
-      <div class="vol-status">Empirical, Z&nbsp;=&nbsp;211</div>
+      <div class="vol-status">Conjecture</div>
     </div>
   </a>
 
@@ -162,7 +162,7 @@
       <div class="vol-num">IV.</div>
       <div>
         <div class="vol-title">Publications <em>&amp; citations</em></div>
-        <div class="vol-desc">Papers, preprints, BibTeX, and the archival record.</div>
+        <div class="vol-desc">Research notes, BibTeX, and the archival record. Further volumes in preparation.</div>
       </div>
       <div class="vol-status">Ongoing</div>
     </div>
@@ -176,47 +176,51 @@
   <h2><span class="num">III.</span> What this is and what it is not</h2>
 
   <p>
-    The Tesfa Grid is an independent research programme, conducted from
-    Addis Ababa, Ethiopia. It is not affiliated with a university or
-    funded by a grant. Its findings are offered openly, under the
-    ordinary conventions of mathematical publication: statements are
-    made precisely, proofs are given where available, empirical
-    evidence is quantified where proofs are not, and no claim
-    exceeds what the work supports.
+    The Tesfa Grid is an independent research programme, conducted
+    from Addis Ababa, Ethiopia. It is not affiliated with a
+    university or funded by a grant. Its findings are offered
+    openly, under the ordinary conventions of a research note:
+    statements are made precisely, proof outlines are given where
+    available, empirical evidence is quantified where proofs are
+    not, and no claim exceeds what the work supports.
   </p>
 
   <p>
-    The programme has a commercial sibling at <a href="https://ethoryx.io">ethoryx.io</a>,
-    which produces cryptographic software derived from these results.
-    The two are kept separate. What lives on this site is the
-    mathematics. What lives on <span class="sc">ethoryx.io</span> is
-    the engineering. They are intended to inform each other, not to
-    be confused with each other.
+    The programme has a commercial sibling at
+    <a href="https://ethoryx.io">ethoryx.io</a>, which produces
+    cryptographic software derived from these results. The two are
+    kept separate. What lives on this site is the mathematics. What
+    lives on <span class="sc">ethoryx.io</span> is the engineering.
+    Detailed parameter choices, specific implementation decisions,
+    and source code for the applied constructions are held internally
+    and are made available to collaborators and commercial licensees
+    rather than posted publicly.
   </p>
 
   <h3>The reader</h3>
 
   <p>
-    These pages are written for the working mathematician, the cryptographer
-    who wants to understand what lies beneath the algorithm, and the
-    serious student encountering this material for the first time. Where
-    notation can be unpacked in a sentence, it is unpacked. Where the
-    underlying machinery is deep, references are provided and the reader
-    is trusted to pursue them.
+    These pages are written for the working mathematician, the
+    cryptographer who wants to understand what lies beneath the
+    algorithm, and the serious student encountering this material
+    for the first time. Where notation can be unpacked in a sentence,
+    it is unpacked. Where the underlying machinery is deep, pointers
+    are provided.
   </p>
 
   <blockquote>
-    The problems of prime numbers have engaged humankind since ancient
-    times, not so much for any practical purpose, but because each of
-    these mathematical jewels possesses a character of its own.
+    The problems of prime numbers have engaged humankind since
+    ancient times, not so much for any practical purpose, but because
+    each of these mathematical jewels possesses a character of its own.
     <cite>Paul Erdős, <em>The Two Cultures of Mathematics</em></cite>
   </blockquote>
 
   <h3>Contact</h3>
 
   <p>
-    Correspondence is welcomed, particularly on the mathematics itself.
-    Write to <a href="mailto:research@ethoryx.io">research@ethoryx.io</a>.
+    Correspondence is welcomed, particularly on the mathematics
+    itself. Write to
+    <a href="mailto:research@ethoryx.io">research@ethoryx.io</a>.
     For commercial enquiries, please visit
     <a href="https://ethoryx.io/contact">ethoryx.io/contact</a>.
   </p>
@@ -229,12 +233,9 @@
     <span class="sc">Crimson Pro</span>, with mathematics in
     <span class="sc">JetBrains Mono</span>. Written and maintained
     by Tesfaye Dereje, independent researcher, Addis Ababa.
-    All findings published openly under the <span class="sc">MIT License</span>.
   </div>
   <div class="credits">
     © 2026 &middot; <a href="mailto:research@ethoryx.io">research@ethoryx.io</a> &middot;
-    <a href="https://arxiv.org/a/tesfadereth">arXiv</a> &middot;
-    <a href="https://eprint.iacr.org/tesfadereth">IACR ePrint</a> &middot;
     <a href="https://ethoryx.io">Ethoryx</a>
   </div>
 </footer>

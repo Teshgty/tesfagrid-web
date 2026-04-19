@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Publications · The Tesfa Grid</title>
-<meta name="description" content="Papers, preprints, and citations from the Tesfa Grid research programme.">
+<meta name="description" content="Research notes and citation data from the Tesfa Grid programme.">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/svg+xml" href="tesfagrid-icon.svg">
 </head>
@@ -30,24 +30,26 @@
 <article class="page">
 
   <h1 class="title">Publications</h1>
-  <p class="subtitle">Papers, preprints, and the archival record</p>
+  <p class="subtitle">Research notes, citations, and the archival record</p>
 
   <div class="abstract">
     <span class="label">Note</span>
     <p>
-      Findings from this programme are published openly on arXiv and
-      <span class="sc">IACR ePrint</span>, with reference implementations
-      on GitHub under the <span class="sc">MIT License</span>. Citation
-      data and BibTeX entries are provided for each work below. We
-      encourage citation of the individual volume when a specific result
-      is used, and citation of the programme as a whole when the broader
-      framework is discussed.
+      Research notes from this programme are hosted on this site.
+      Formal preprint and peer-reviewed submissions will follow as
+      the programme matures. Citation data and BibTeX entries are
+      provided below for each currently published volume.
+    </p>
+    <p>
+      Applied implementation details — parameter choices, integration
+      specifics, and reference source code — are held internally and
+      are made available to collaborators and commercial licensees.
     </p>
   </div>
 
   <div class="ornament"></div>
 
-  <h2><span class="num">§1.</span> Primary works</h2>
+  <h2><span class="num">§1.</span> Current volumes</h2>
 
   <h3>Volume I &middot; Theorem 7</h3>
 
@@ -57,15 +59,13 @@
   </p>
 
   <p class="sidenote">
-    Elementary proof that consecutive prime gaps between primes greater
-    than 3 are always congruent to 0, 2, or 4 modulo 6. Empirically
-    verified across 348,511 consecutive gaps with zero violations.
+    Elementary statement and proof that consecutive prime gaps between
+    primes greater than 3 fall in residue classes 0, 2, or 4 modulo 6.
+    Verified empirically across 348,511 consecutive gaps.
   </p>
 
   <ul>
-    <li><a href="/theorem-7">Full paper on this site</a></li>
-    <li><a href="https://arxiv.org/a/tesfadereth">arXiv preprint</a> (math.NT)</li>
-    <li><a href="https://eprint.iacr.org/tesfadereth">IACR ePrint</a> (companion, cryptographic context)</li>
+    <li><a href="/theorem-7">Full note on this site</a></li>
   </ul>
 
   <pre>@article{dereje2026theorem7,
@@ -73,32 +73,32 @@
   title        = {Theorem 7: A mod-6 constraint on consecutive prime gaps},
   year         = {2026},
   journal      = {The Tesfa Grid, Volume I},
-  url          = {https://tesfagrid.io/theorem-7},
-  howpublished = {\url{https://arxiv.org/a/tesfadereth}}
+  url          = {https://tesfagrid.io/theorem-7}
 }</pre>
 
   <h3>Volume II &middot; The Column-Class Sieve</h3>
 
   <p>
-    <strong>The Column-Class Sieve: theorem-guided prime generation.</strong>
+    <strong>The Column-Class Sieve: a theorem-guided approach to prime generation.</strong>
     Tesfaye Dereje. <em>The Tesfa Grid</em>, Volume II, 2026.
   </p>
 
   <p class="sidenote">
-    A prime-generation algorithm for number-theoretic transform primes.
-    Proved 75% candidate reduction relative to naive sampling, with
-    open-source <span class="sc">C/GMP</span> reference implementation.
+    A prime-generation algorithm derived from the structure established
+    in Volume I. Benchmark performance measured on the Ethoryx reference
+    implementation. Parameter choices and source code are held
+    internally.
   </p>
 
   <ul>
-    <li><a href="/column-class-sieve">Full paper on this site</a></li>
-    <li><a href="https://github.com/Teshgty/tesfagrid">Reference implementation (C/GMP, MIT)</a></li>
-    <li><a href="https://api.ethoryx.io/v1/generate/ntt">Live endpoint</a> (for experimentation)</li>
+    <li><a href="/column-class-sieve">Research note on this site</a></li>
+    <li><a href="https://api.ethoryx.io/v1/generate/ntt">Live endpoint</a> (benchmarking)</li>
   </ul>
 
   <pre>@article{dereje2026sieve,
   author  = {Tesfaye Dereje},
-  title   = {The Column-Class Sieve: theorem-guided prime generation},
+  title   = {The Column-Class Sieve: a theorem-guided approach
+             to prime generation},
   year    = {2026},
   journal = {The Tesfa Grid, Volume II},
   url     = {https://tesfagrid.io/column-class-sieve}
@@ -107,29 +107,28 @@
   <h3>Volume III &middot; The Oscillation Law</h3>
 
   <p>
-    <strong>The Oscillation Law: empirical alternation of consecutive prime-gap differences.</strong>
+    <strong>The Oscillation Law: empirical alternation in prime-gap second-differences.</strong>
     Tesfaye Dereje. <em>The Tesfa Grid</em>, Volume III, 2026.
   </p>
 
   <p class="sidenote">
-    Empirical observation that sign of the second-difference
-    <code class="math">G<sub>2</sub>(k)</code> alternates 68.2% of the
-    time, against a null expectation of 50%. <code class="math">Z = 211</code>
-    across 348,511 samples. Stated as a conjecture; proof remains open.
+    Empirical observation that the sign of prime-gap second-differences
+    alternates at a frequency of approximately 68.2%, against a null
+    expectation of 50%. Z-score approximately 211 across the sample.
+    Conjecture; proof remains open.
   </p>
 
   <ul>
-    <li><a href="/oscillation-law">Full paper on this site</a></li>
-    <li><a href="https://arxiv.org/a/tesfadereth">arXiv preprint</a></li>
+    <li><a href="/oscillation-law">Research note on this site</a></li>
   </ul>
 
   <pre>@article{dereje2026oscillation,
   author  = {Tesfaye Dereje},
-  title   = {The Oscillation Law: empirical alternation of
-             consecutive prime-gap differences},
+  title   = {The Oscillation Law: empirical alternation in
+             prime-gap second-differences},
   year    = {2026},
   journal = {The Tesfa Grid, Volume III},
-  note    = {Empirical finding; Z = 211 over 348,511 samples},
+  note    = {Empirical finding; Z \approx 211 over 348,511 samples},
   url     = {https://tesfagrid.io/oscillation-law}
 }</pre>
 
@@ -138,9 +137,9 @@
   <h2><span class="num">§2.</span> Cite the programme</h2>
 
   <p>
-    To cite the Tesfa Grid research programme as a whole — for example
-    when describing the broader framework rather than a specific result —
-    the following BibTeX entry is appropriate:
+    To cite the Tesfa Grid research programme as a whole — when
+    describing the broader framework rather than a specific result —
+    the following entry is appropriate:
   </p>
 
   <pre>@misc{tesfagrid2026,
@@ -151,54 +150,31 @@
   note         = {Independent research programme, Addis Ababa, Ethiopia}
 }</pre>
 
-  <h2><span class="num">§3.</span> Suggested reading order</h2>
+  <h2><span class="num">§3.</span> Further volumes</h2>
 
   <p>
-    For readers new to the programme, we suggest the following sequence:
+    Several further volumes are in preparation. The programme
+    currently projects nine theorems in total, of which three are
+    published above in research-note form. Future volumes will extend
+    the framework to related structural questions in number theory
+    and will appear on this site as they become ready.
   </p>
 
-  <ol>
-    <li>The <a href="/">introduction</a> on this site, for context and motivation.</li>
-    <li><a href="/theorem-7">Volume I (Theorem 7)</a>, which establishes the mathematical foundation.</li>
-    <li><a href="/column-class-sieve">Volume II (the Sieve)</a>, which converts the theorem into algorithm.</li>
-    <li><a href="/oscillation-law">Volume III (the Oscillation Law)</a>, for the current empirical frontier.</li>
-  </ol>
+  <h2><span class="num">§4.</span> Access to applied material</h2>
 
   <p>
-    Each volume is self-contained enough to be read independently, but
-    the later volumes assume familiarity with the notation and
-    terminology introduced in the earlier ones.
-  </p>
-
-  <div class="ornament"></div>
-
-  <h2><span class="num">§4.</span> Open source implementations</h2>
-
-  <p>
-    All algorithms described in these papers have open-source reference
-    implementations. The production <span class="sc">C/GMP</span> engine
-    that powers the Ethoryx commercial API is the same code that
-    produced the empirical data in Volumes I and III.
-  </p>
-
-  <ul>
-    <li><a href="https://github.com/Teshgty/tesfagrid">github.com/Teshgty/tesfagrid</a> — reference implementation in C with <span class="sc">GMP</span></li>
-    <li><a href="https://github.com/Teshgty/ethoryx-web">github.com/Teshgty/ethoryx-web</a> — commercial website (for context)</li>
-    <li><a href="https://github.com/Teshgty/tesfagrid-web">github.com/Teshgty/tesfagrid-web</a> — this research site</li>
-  </ul>
-
-  <h2><span class="num">§5.</span> Correspondence</h2>
-
-  <p>
-    The author welcomes correspondence on the mathematics, corrections
-    to any stated results, and proposals for collaboration. Please write
-    to <a href="mailto:research@ethoryx.io">research@ethoryx.io</a>.
+    Readers engaged in academic work on related topics are welcome to
+    correspond with the author for additional unpublished material
+    and proof details. Write to
+    <a href="mailto:research@ethoryx.io">research@ethoryx.io</a>.
   </p>
 
   <p>
-    For commercial enquiries (licensing, <span class="sc">HSM</span> vendor
-    partnerships, hospital integrations), please direct correspondence to
-    <a href="https://ethoryx.io/contact">ethoryx.io/contact</a> instead.
+    Readers interested in commercial licensing of the applied
+    implementations — including the Ethoryx C/GMP engine and the
+    parameter choices used in production — should direct correspondence
+    to <a href="mailto:licensing@ethoryx.io">licensing@ethoryx.io</a>
+    or visit <a href="https://ethoryx.io/contact">ethoryx.io/contact</a>.
   </p>
 
 </article>
@@ -211,8 +187,6 @@
   </div>
   <div class="credits">
     © 2026 &middot; <a href="mailto:research@ethoryx.io">research@ethoryx.io</a> &middot;
-    <a href="https://arxiv.org/a/tesfadereth">arXiv</a> &middot;
-    <a href="https://eprint.iacr.org/tesfadereth">IACR ePrint</a> &middot;
     <a href="https://ethoryx.io">Ethoryx</a>
   </div>
 </footer>
