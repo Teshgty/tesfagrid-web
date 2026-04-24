@@ -802,50 +802,26 @@ footer .credits a:hover { color: var(--oxblood); }
 .nav-dd:hover .nav-dd-chev,
 .nav-dd-trigger.open .nav-dd-chev { transform: rotate(180deg); opacity: 0.9; }
 
-/* Invisible hover bridge — keeps cursor in contact with .nav-dd
-   as it travels from trigger down to menu. Without this, the
-   visual 8px gap breaks :hover and the menu closes mid-click. */
-.nav-dd::after {
-  content: "";
+.nav-dd-menu {
+  /* Menu sits flush with bottom of trigger. No gap. Visual separation
+     comes from the menu's own top padding + box-shadow, not positioning. */
   position: absolute;
   top: 100%;
-  left: 0; right: 0;
-  height: 0.8rem;  /* matches the gap below */
-  pointer-events: none;  /* default: not interactive */
-}
-.nav-dd:hover::after {
-  pointer-events: auto;  /* becomes the bridge only when dropdown is open */
-}
-
-.nav-dd-menu {
-  position: absolute; top: 100%; left: -1rem;
-  margin-top: 0.5rem;  /* visual gap preserved */
+  left: -1rem;
   background: var(--paper);
   border: 1px solid var(--rule);
-  border-radius: 4px;
-  padding: 0.6rem 0;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  padding: 1.2rem 0 0.6rem;  /* extra top padding = visual "gap" */
   min-width: 260px;
   box-shadow: 0 8px 32px rgba(26, 21, 16, 0.12);
   opacity: 0; visibility: hidden; transform: translateY(-4px);
   transition: opacity 0.15s, transform 0.15s, visibility 0s 0.15s;
   z-index: 100;
 }
-
-/* The crucial part: the menu's own padding-top creates an invisible
-   "safe zone" so the cursor can cross the gap without losing :hover.
-   Combined with the ::after bridge above, this is bulletproof. */
-.nav-dd-menu::before {
-  content: "";
-  position: absolute;
-  top: -0.8rem;
-  left: 0; right: 0;
-  height: 0.8rem;
-}
-
 .nav-dd:hover .nav-dd-menu,
 .nav-dd:focus-within .nav-dd-menu,
-.nav-dd-menu.open,
-.nav-dd-menu:hover {
+.nav-dd-menu.open {
   opacity: 1; visibility: visible; transform: translateY(0);
   transition: opacity 0.15s, transform 0.15s, visibility 0s;
 }
