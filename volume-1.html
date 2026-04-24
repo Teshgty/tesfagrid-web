@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volume I — The Tesfa Grid — The Tesfa Grid</title>
+<meta name="description" content="Volume I of the Tesfa Grid research programme. Nine proved theorems establishing the foundational structure of a deterministic harmonic sieve.">
+<link rel="icon" type="image/svg+xml" href="/tesfagrid-icon.svg">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrap">
+    <a href="/" class="nav-mast">
+      The Tesfa Grid
+      <span class="nav-mast-sub">a research programme in number theory</span>
+    </a>
+    <div class="nav-links">
+      <div class="nav-dd">
+        <button class="nav-dd-trigger">Research <span class="nav-dd-chev">▾</span></button>
+        <div class="nav-dd-menu">
+          <span class="nav-dd-label">The Programme</span>
+          <a href="/research" class="nav-dd-item">Overview <span class="desc">The research programme</span></a>
+          <a href="/open-problems" class="nav-dd-item">Open Problems <span class="desc">Questions under investigation</span></a>
+          <div class="nav-dd-divider"></div>
+          <span class="nav-dd-label">Key Results</span>
+          <a href="/theorem-7" class="nav-dd-item">Mod-6 Gap Constraint <span class="desc">Theorem VII</span></a>
+          <a href="/oscillation-law" class="nav-dd-item">Oscillation Law <span class="desc">Empirical conjecture</span></a>
+          <a href="/harmonic-sieve" class="nav-dd-item">Harmonic Sieve <span class="desc">Theorem IX</span></a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-trigger">Publications <span class="nav-dd-chev">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/publications" class="nav-dd-item">All Publications <span class="desc">Papers, preprints, notes</span></a>
+          <div class="nav-dd-divider"></div>
+          <span class="nav-dd-label">The Three Volumes</span>
+          <a href="/volume-1" class="nav-dd-item">Volume I · The Tesfa Grid <span class="desc">Foundational theorems</span></a>
+          <a href="/volume-2" class="nav-dd-item">Volume II · Tesfa-Zeta <span class="desc">Spectral alignment evidence</span></a>
+          <a href="/volume-3" class="nav-dd-item">Volume III · Gap Hierarchy <span class="desc">In preparation</span></a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-trigger">Community <span class="nav-dd-chev">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/community" class="nav-dd-item">Overview <span class="desc">Ways to engage</span></a>
+          <div class="nav-dd-divider"></div>
+          <a href="/seminars" class="nav-dd-item">Seminars &amp; Talks <span class="desc">Upcoming and archived</span></a>
+          <a href="/collaborators" class="nav-dd-item">Collaborators <span class="desc">Researchers and institutions</span></a>
+          <a href="/for-students" class="nav-dd-item">For Students <span class="desc">Research questions, guidance</span></a>
+          <a href="/newsletter" class="nav-dd-item">Newsletter <span class="desc">Quarterly updates</span></a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-trigger">About <span class="nav-dd-chev">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/about" class="nav-dd-item">The Programme <span class="desc">Mission &amp; approach</span></a>
+          <a href="/philosophy" class="nav-dd-item">Philosophy <span class="desc">Geometry first, primes second</span></a>
+          <a href="/team" class="nav-dd-item">Team <span class="desc">Researcher profile</span></a>
+          <div class="nav-dd-divider"></div>
+          <a href="/contact" class="nav-dd-item">Contact <span class="desc">Correspondence</span></a>
+        </div>
+      </div>
+    </div>
+    <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-mobile-panel" id="navMobilePanel">
+  <button class="nav-mobile-close" id="navMobileClose" aria-label="Close menu">×</button>
+  <div class="nav-mobile-section"><div class="nav-mobile-section-title">Research</div>
+    <a href="/research">Overview</a>
+    <a href="/open-problems">Open Problems</a>
+    <a href="/theorem-7">Mod-6 Gap Constraint</a>
+    <a href="/oscillation-law">Oscillation Law</a>
+    <a href="/harmonic-sieve">Harmonic Sieve</a>
+  </div>
+  <div class="nav-mobile-section"><div class="nav-mobile-section-title">Publications</div>
+    <a href="/publications">All Publications</a>
+    <a href="/volume-1">Volume I · The Tesfa Grid</a>
+    <a href="/volume-2">Volume II · Tesfa-Zeta</a>
+    <a href="/volume-3">Volume III · Gap Hierarchy</a>
+  </div>
+  <div class="nav-mobile-section"><div class="nav-mobile-section-title">Community</div>
+    <a href="/community">Overview</a>
+    <a href="/seminars">Seminars &amp; Talks</a>
+    <a href="/collaborators">Collaborators</a>
+    <a href="/for-students">For Students</a>
+    <a href="/newsletter">Newsletter</a>
+  </div>
+  <div class="nav-mobile-section"><div class="nav-mobile-section-title">About</div>
+    <a href="/about">The Programme</a>
+    <a href="/philosophy">Philosophy</a>
+    <a href="/team">Team</a>
+    <a href="/contact">Contact</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var t = document.getElementById('navMobileToggle');
+  var p = document.getElementById('navMobilePanel');
+  var c = document.getElementById('navMobileClose');
+  if(t && p) t.addEventListener('click', function(){ p.classList.add('open'); });
+  if(c && p) c.addEventListener('click', function(){ p.classList.remove('open'); });
+  if(p) p.addEventListener('click', function(e){
+    if(e.target.tagName === 'A') p.classList.remove('open');
+  });
+  document.addEventListener('click', function(e){
+    if(!e.target.closest('.nav-dd')){
+      document.querySelectorAll('.nav-dd-menu.open').forEach(function(m){ m.classList.remove('open'); });
+      document.querySelectorAll('.nav-dd-trigger.open').forEach(function(b){ b.classList.remove('open'); });
+    }
+  });
+  document.querySelectorAll('.nav-dd-trigger').forEach(function(b){
+    b.addEventListener('click', function(e){
+      if(window.innerWidth > 900) return;
+      e.preventDefault();
+      var m = b.nextElementSibling;
+      m.classList.toggle('open');
+      b.classList.toggle('open');
+    });
+  });
+})();
+</script>
+
+
+
+<section class="hero-prime">
+  <div class="hero-tag">Volume I · Preprint · March 2026</div>
+  <h1>The Tesfa Grid: A Deterministic <em>Harmonic Sieve</em> and Its Structural Interactions with Prime Numbers</h1>
+  <p class="hero-lead">The foundational volume of the research programme. Introduces and rigorously formalizes the Tesfa Grid construction and establishes nine proved theorems across two parts.</p>
+  <div class="hero-meta">
+    <span>Tesfaye Dereje</span>
+    <span>Independent Researcher</span>
+    <span>33 pages</span>
+    <span>Submitted for peer review</span>
+  </div>
+  <div style="margin-top:var(--s-md);display:flex;gap:var(--s-sm);flex-wrap:wrap">
+    <a href="/publications" class="btn-read">Full PDF →</a>
+    <a href="/open-problems" class="btn-read btn-read-sec">Open Problems</a>
+  </div>
+</section>
+
+<main style="max-width:var(--measure-wide);margin:0 auto;padding:0 2rem var(--s-lg)">
+
+<section style="margin-bottom:var(--s-lg)">
+  <h2 style="font-family:var(--ff-head);font-size:1.6rem;margin-bottom:var(--s-md);letter-spacing:-0.01em">Abstract</h2>
+  <p style="font-size:1.02rem;line-height:1.75;color:var(--ink);margin-bottom:var(--s)">We introduce and rigorously formalize the Tesfa Grid, a family of deterministic two-dimensional matrix operators defined by a six-row, variable-column construction and an immutable two-phase filling rule. This volume establishes nine proved theorems: the Column Closure Law; Upper and Lower Diagonal Mean Laws; the Row-6 Structural Prime Exclusion Theorem; the General Summation Formula; Prime-Only Block Divergence (R² = 0.9992); the Mod-6 Gap Constraint; the Twin Prime Hex-Spacing Theorem; and the Harmonic Sieve Theorem.</p>
+  <p style="font-size:1.02rem;line-height:1.75;color:var(--ink);margin-bottom:var(--s)">The volume further documents the Tesfa Wave, the Tesfa Gap Code, connections to the Riemann zeta function, and a spectral analysis of the prime residual sequence. Monte Carlo experiments yield a low-frequency power ratio of 0.406 versus 0.094 ± 0.018 for random permutations (Z ≈ 17σ). Sinusoidal fits of detrended column sums yield R² = 0.8622 at C = 600 with permutation p = 0.0000 in 5,000 trials. Cross-cycle residual correlation of 0.713 for real primes versus −0.184 for random-gap sequences establishes a structural signal unique to the prime distribution.</p>
+  <p style="font-size:1.02rem;line-height:1.75;color:var(--ink)">The Tesfa-Zeta Conjecture — that the scale-invariant prime envelope captured by the Tesfa Grid reflects a structural property of the prime sequence whose connection to the Riemann zeta function remains an open question — is formally stated. <em>No claims are made regarding proof of the Riemann Hypothesis.</em></p>
+</section>
+
+<section style="margin-bottom:var(--s-lg)">
+  <h2 style="font-family:var(--ff-head);font-size:1.6rem;margin-bottom:var(--s-md);letter-spacing:-0.01em;border-top:1px solid var(--rule);padding-top:var(--s-md)">The nine theorems</h2>
+  <ol class="theorem-list">
+    <li>
+      <span class="thm-num">I</span>
+      <div>
+        <span class="thm-name">Column Closure Law</span>
+        <span class="thm-statement">For every column j and any parameters a, d: g(1,j) + g(2,j) + g(3,j) = g(6,j) + 2(d − a). An exact arithmetic identity linking the upper block to the bottom row.</span>
+      </div>
+    </li>
+    <li>
+      <span class="thm-num">II</span>
+      <div>
+        <span class="thm-name">Upper Diagonal Mean Law</span>
+        <span class="thm-statement">[g(1, j−1) + g(3, j+1)] / 2 = g(2, j). The center of any diagonal triple in the upper block is the exact arithmetic mean of its endpoints.</span>
+      </div>
+    </li>
+    <li>
+      <span class="thm-num">III</span>
+      <div>
+        <span class="thm-name">Lower Diagonal Mean Law</span>
+        <span class="thm-statement">[g(6, j) + g(5, j+1) + g(4, j+2)] / 3 = g(5, j+1). The symmetric invariance in the lower block, under the faster 3:1 velocity of Phase II.</span>
+      </div>
+    </li>
+    <li>
+      <span class="thm-num">IV</span>
+      <div>
+        <span class="thm-name">Row-6 Structural Prime Exclusion</span>
+        <span class="thm-statement">In the canonical grid, row 6 entries are g(6, j) = 3(C + j). Every entry is divisible by 3 and greater than 3, hence always composite. A zero-cost geometric prime sieve that eliminates 1/6 of all candidates purely by construction.</span>
+      </div>
+    </li>
+    <li>
+      <span class="thm-num">V</span>
+      <div>
+        <span class="thm-name">General Summation Formula</span>
+        <span class="thm-statement">The column sum is S_j = 6A + (12C + 12j − 9)·D. The linear coefficient in j is 12D — the velocity-doubling signature of the two-phase rule, independent of C.</span>
+      </div>
+    </li>
+    <li>
+      <span class="thm-num">VI</span>
+      <div>
+        <span class="thm-name">Prime-Only Block Divergence</span>
+        <span class="thm-statement">In prime-only mode, the block divergence (lower − upper column sums) grows linearly: Δ_j ≈ 52.1 j + const, with R² = 0.9992 and p &lt; 4.4×10⁻¹²². A new two-dimensional prime gap metric.</span>
+      </div>
+    </li>
+    <li>
+      <span class="thm-num">VII</span>
+      <div>
+        <span class="thm-name">Mod-6 Gap Constraint</span>
+        <span class="thm-statement">For all prime gaps g = p_{n+1} − p_n with p_n &gt; 3: g ≡ 0, 2, or 4 (mod 6). No prime gap (after the initial gap of 1) is congruent to 1, 3, or 5 modulo 6.</span>
+      </div>
+    </li>
+    <li>
+      <span class="thm-num">VIII</span>
+      <div>
+        <span class="thm-name">Twin Prime Hex-Spacing</span>
+        <span class="thm-statement">For any two consecutive twin prime pairs (p, p+2) and (q, q+2) with p, q &gt; 3, the gap q − p is divisible by 6.</span>
+      </div>
+    </li>
+    <li>
+      <span class="thm-num">IX</span>
+      <div>
+        <span class="thm-name">Harmonic Sieve Theorem</span>
+        <span class="thm-statement">The generalized Tesfa Grid operator T_{C,w} has exact spectral nulls at frequencies f_k = k/C for k = 1, …, w−1. The transfer function H(f) satisfies H(f_k) = 0 at every null, proved via the Dirichlet kernel. The operator preserves the DC component while annihilating exactly w−1 oscillatory frequencies per period.</span>
+      </div>
+    </li>
+  </ol>
+</section>
+
+</main>
+
+<div class="findings-band">
+<div class="findings-inner">
+  <h2>Empirical results</h2>
+  <p style="color:var(--ink-dim);font-size:1rem;line-height:1.7;max-width:var(--measure);margin-bottom:var(--s-md)">Selected quantitative findings from the computational experiments in Part II.</p>
+  <div class="findings-grid">
+    <div class="finding">
+      <div class="finding-label">Monte Carlo LF Ratio</div>
+      <div class="finding-number">Z ≈ <em>17σ</em></div>
+      <div class="finding-note">Structured LF = 0.406 vs random 0.094 ± 0.018. 200 trials, p &lt; 0.005.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-label">Cross-Cycle Resonance</div>
+      <div class="finding-number"><em>0.7131</em></div>
+      <div class="finding-note">Real primes residual correlation. Random-gap controls: −0.184.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-label">Welch Spectrum (C=500)</div>
+      <div class="finding-number"><em>14.5×</em></div>
+      <div class="finding-note">Low-frequency enhancement vs random baseline. Total power suppression ~20,000×.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-label">Gap Verification</div>
+      <div class="finding-number"><em>348,511</em></div>
+      <div class="finding-note">Consecutive prime gaps up to 1,000,000. Zero Theorem VII violations. 100% compliance.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<main style="max-width:var(--measure-wide);margin:0 auto;padding:0 2rem var(--s-lg)">
+
+<section style="margin-bottom:var(--s-lg)">
+  <h2 style="font-family:var(--ff-head);font-size:1.6rem;margin-bottom:var(--s-md);letter-spacing:-0.01em;border-top:1px solid var(--rule);padding-top:var(--s-md)">Structure of the volume</h2>
+  <dl style="font-size:1rem;line-height:1.7;color:var(--ink);max-width:var(--measure-wide)">
+    <dt style="font-weight:600;margin-top:var(--s);font-family:var(--ff-head);font-size:1.12rem">Part I — The Integer Grid: Construction, Theorems, and Prime Interactions</dt>
+    <dd style="color:var(--ink-dim);margin:var(--s-xs) 0 var(--s) 0">Construction and canonical example · Five structural theorems (Theorems I – V) · Prime-marked mode · Row-wise density and the Tesfa Wave · Prime-only mode and Block Divergence (Theorem VI) · Deep statistical analysis · The Tesfa Gap Code (Theorems VII, VIII) · Perfect numbers, zeta connections, twin primes.</dd>
+    <dt style="font-weight:600;margin-top:var(--s);font-family:var(--ff-head);font-size:1.12rem">Part II — The Harmonic Sieve: Spectral Analysis and Computational Experiments</dt>
+    <dd style="color:var(--ink-dim);margin:var(--s-xs) 0 var(--s) 0">The generalized operator T_{C,w} · The Harmonic Sieve Theorem (Theorem IX) and its proof via Dirichlet kernels · Monte Carlo significance experiments · The Tesfa Wave as a sinusoidal structure in prime residuals · Cross-cycle geometric resonance · Resonance width analysis · Deep sequence prediction.</dd>
+    <dt style="font-weight:600;margin-top:var(--s);font-family:var(--ff-head);font-size:1.12rem">Part III — Unified Discussion, Open Problems, and Conclusion</dt>
+    <dd style="color:var(--ink-dim);margin:var(--s-xs) 0 var(--s) 0">Methodology, interpretation, and limitations · Unified open problems · Conclusion.</dd>
+  </dl>
+</section>
+
+<section style="margin-bottom:var(--s-lg);padding:var(--s-md);background:var(--paper-deep);border-radius:4px;border-left:3px solid var(--oxblood)">
+  <div style="font-family:var(--ff-mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--oxblood);margin-bottom:var(--s-sm)">Note on scope</div>
+  <p style="font-size:0.98rem;line-height:1.7;color:var(--ink);margin:0;font-style:italic">All results in Part II are empirical. The Harmonic Sieve Theorem is proved, but the claim that prime-indexed inputs exhibit enhanced low-frequency ratios is a conjecture supported by numerical evidence, not a theorem. The Tesfa-Zeta Conjecture remains open.</p>
+</section>
+
+</main>
+
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-brand">
+      <div class="footer-mast">The Tesfa Grid</div>
+      <p class="footer-sub">A research programme in number theory, discrete geometry, and spectral analysis. Independent. Based in Addis Ababa, Ethiopia.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Research</h5>
+      <a href="/research">Programme</a>
+      <a href="/publications">Publications</a>
+      <a href="/open-problems">Open Problems</a>
+    </div>
+    <div class="footer-col">
+      <h5>Volumes</h5>
+      <a href="/volume-1">Volume I</a>
+      <a href="/volume-2">Volume II</a>
+      <a href="/volume-3">Volume III</a>
+    </div>
+    <div class="footer-col">
+      <h5>Community</h5>
+      <a href="/community">Overview</a>
+      <a href="/for-students">For Students</a>
+      <a href="/newsletter">Newsletter</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <a href="/contact">General</a>
+      <a href="mailto:research@tesfagrid.io">research@tesfagrid.io</a>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© 2026 Tesfa Grid Research Programme</span>
+    <span class="footer-loc">Addis Ababa · Ethiopia</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volume II — Tesfa-Zeta Conjecture — The Tesfa Grid</title>
+<meta name="description" content="Volume II. Three independent spectral methods identify peaks in Tesfa Grid residuals at frequencies coinciding with Riemann zeta zero imaginary parts. Sub-0.1 accuracy.">
+<link rel="icon" type="image/svg+xml" href="/tesfagrid-icon.svg">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrap">
+    <a href="/" class="nav-mast">
+      The Tesfa Grid
+      <span class="nav-mast-sub">a research programme in number theory</span>
+    </a>
+    <div class="nav-links">
+      <div class="nav-dd">
+        <button class="nav-dd-trigger">Research <span class="nav-dd-chev">▾</span></button>
+        <div class="nav-dd-menu">
+          <span class="nav-dd-label">The Programme</span>
+          <a href="/research" class="nav-dd-item">Overview <span class="desc">The research programme</span></a>
+          <a href="/open-problems" class="nav-dd-item">Open Problems <span class="desc">Questions under investigation</span></a>
+          <div class="nav-dd-divider"></div>
+          <span class="nav-dd-label">Key Results</span>
+          <a href="/theorem-7" class="nav-dd-item">Mod-6 Gap Constraint <span class="desc">Theorem VII</span></a>
+          <a href="/oscillation-law" class="nav-dd-item">Oscillation Law <span class="desc">Empirical conjecture</span></a>
+          <a href="/harmonic-sieve" class="nav-dd-item">Harmonic Sieve <span class="desc">Theorem IX</span></a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-trigger">Publications <span class="nav-dd-chev">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/publications" class="nav-dd-item">All Publications <span class="desc">Papers, preprints, notes</span></a>
+          <div class="nav-dd-divider"></div>
+          <span class="nav-dd-label">The Three Volumes</span>
+          <a href="/volume-1" class="nav-dd-item">Volume I · The Tesfa Grid <span class="desc">Foundational theorems</span></a>
+          <a href="/volume-2" class="nav-dd-item">Volume II · Tesfa-Zeta <span class="desc">Spectral alignment evidence</span></a>
+          <a href="/volume-3" class="nav-dd-item">Volume III · Gap Hierarchy <span class="desc">In preparation</span></a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-trigger">Community <span class="nav-dd-chev">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/community" class="nav-dd-item">Overview <span class="desc">Ways to engage</span></a>
+          <div class="nav-dd-divider"></div>
+          <a href="/seminars" class="nav-dd-item">Seminars &amp; Talks <span class="desc">Upcoming and archived</span></a>
+          <a href="/collaborators" class="nav-dd-item">Collaborators <span class="desc">Researchers and institutions</span></a>
+          <a href="/for-students" class="nav-dd-item">For Students <span class="desc">Research questions, guidance</span></a>
+          <a href="/newsletter" class="nav-dd-item">Newsletter <span class="desc">Quarterly updates</span></a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-trigger">About <span class="nav-dd-chev">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/about" class="nav-dd-item">The Programme <span class="desc">Mission &amp; approach</span></a>
+          <a href="/philosophy" class="nav-dd-item">Philosophy <span class="desc">Geometry first, primes second</span></a>
+          <a href="/team" class="nav-dd-item">Team <span class="desc">Researcher profile</span></a>
+          <div class="nav-dd-divider"></div>
+          <a href="/contact" class="nav-dd-item">Contact <span class="desc">Correspondence</span></a>
+        </div>
+      </div>
+    </div>
+    <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-mobile-panel" id="navMobilePanel">
+  <button class="nav-mobile-close" id="navMobileClose" aria-label="Close menu">×</button>
+  <div class="nav-mobile-section"><div class="nav-mobile-section-title">Research</div>
+    <a href="/research">Overview</a>
+    <a href="/open-problems">Open Problems</a>
+    <a href="/theorem-7">Mod-6 Gap Constraint</a>
+    <a href="/oscillation-law">Oscillation Law</a>
+    <a href="/harmonic-sieve">Harmonic Sieve</a>
+  </div>
+  <div class="nav-mobile-section"><div class="nav-mobile-section-title">Publications</div>
+    <a href="/publications">All Publications</a>
+    <a href="/volume-1">Volume I · The Tesfa Grid</a>
+    <a href="/volume-2">Volume II · Tesfa-Zeta</a>
+    <a href="/volume-3">Volume III · Gap Hierarchy</a>
+  </div>
+  <div class="nav-mobile-section"><div class="nav-mobile-section-title">Community</div>
+    <a href="/community">Overview</a>
+    <a href="/seminars">Seminars &amp; Talks</a>
+    <a href="/collaborators">Collaborators</a>
+    <a href="/for-students">For Students</a>
+    <a href="/newsletter">Newsletter</a>
+  </div>
+  <div class="nav-mobile-section"><div class="nav-mobile-section-title">About</div>
+    <a href="/about">The Programme</a>
+    <a href="/philosophy">Philosophy</a>
+    <a href="/team">Team</a>
+    <a href="/contact">Contact</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var t = document.getElementById('navMobileToggle');
+  var p = document.getElementById('navMobilePanel');
+  var c = document.getElementById('navMobileClose');
+  if(t && p) t.addEventListener('click', function(){ p.classList.add('open'); });
+  if(c && p) c.addEventListener('click', function(){ p.classList.remove('open'); });
+  if(p) p.addEventListener('click', function(e){
+    if(e.target.tagName === 'A') p.classList.remove('open');
+  });
+  document.addEventListener('click', function(e){
+    if(!e.target.closest('.nav-dd')){
+      document.querySelectorAll('.nav-dd-menu.open').forEach(function(m){ m.classList.remove('open'); });
+      document.querySelectorAll('.nav-dd-trigger.open').forEach(function(b){ b.classList.remove('open'); });
+    }
+  });
+  document.querySelectorAll('.nav-dd-trigger').forEach(function(b){
+    b.addEventListener('click', function(e){
+      if(window.innerWidth > 900) return;
+      e.preventDefault();
+      var m = b.nextElementSibling;
+      m.classList.toggle('open');
+      b.classList.toggle('open');
+    });
+  });
+})();
+</script>
+
+
+
+<section class="hero-prime">
+  <div class="hero-tag">Volume II · Preprint · March 2026 · <strong style="color:var(--oxblood)">Headline result</strong></div>
+  <h1>Empirical Evidence for the <em>Tesfa-Zeta Conjecture</em></h1>
+  <p class="hero-lead">Three independent spectral methods consistently identify peaks in the Tesfa Grid residual spectrum at frequencies coinciding with the imaginary parts of the non-trivial zeros of the Riemann zeta function. Sub-0.1 accuracy on multiple zeros. All signals absent in shuffled, noise, and fake-prime controls.</p>
+  <div class="hero-meta">
+    <span>Tesfaye Dereje</span>
+    <span>March 2026</span>
+    <span>14 pages</span>
+    <span>Preprint — Not a proof of the Riemann Hypothesis</span>
+  </div>
+  <div style="margin-top:var(--s-md);display:flex;gap:var(--s-sm);flex-wrap:wrap">
+    <a href="/publications" class="btn-read">Full PDF →</a>
+    <a href="/volume-1" class="btn-read btn-read-sec">Read Volume I</a>
+  </div>
+</section>
+
+<main style="max-width:var(--measure-wide);margin:0 auto;padding:0 2rem var(--s-lg)">
+
+<section style="margin-bottom:var(--s-lg)">
+  <h2 style="font-family:var(--ff-head);font-size:1.6rem;margin-bottom:var(--s-md);letter-spacing:-0.01em">Abstract</h2>
+  <p style="font-size:1.02rem;line-height:1.75;color:var(--ink);margin-bottom:var(--s)">We present the first direct experimental test of the <em>Tesfa-Zeta Conjecture</em> — the proposition that the Fourier transform of the Tesfa Grid residuals ε(j) = ρ(j) − 1/ln(6j), computed in logarithmic column-index space, produces spectral peaks at frequencies coinciding with the imaginary parts γ_n of the non-trivial zeros of the Riemann zeta function.</p>
+  <p style="font-size:1.02rem;line-height:1.75;color:var(--ink);margin-bottom:var(--s)">Three independent methods were applied across grid widths C = 500, 1,000, 2,000, 5,000, and 10,000, with 300 randomized controls per C value. The Lomb-Scargle analysis identifies peaks aligning with known zeta zeros at sub-0.1 accuracy, including δ = 0.012 for γ₁ = 14.135 at C = 2,000 and δ = 0.019 for γ₁₅ = 65.113 at C = 5,000. The matched-filter test finds 10 of 30 zeta zeros with z-score above 2.0 at C = 10,000, against 1.5 expected by chance (p &lt; 0.001).</p>
+  <p style="font-size:1.02rem;line-height:1.75;color:var(--ink)">All signals are absent in shuffled-residual, white-noise, and fake-prime controls. These results constitute strong empirical support for the Tesfa-Zeta Conjecture. <em>The Riemann Hypothesis remains unproved.</em></p>
+</section>
+
+<section style="margin-bottom:var(--s-lg);padding:var(--s-md);background:var(--paper-deep);border-radius:4px;border-left:3px solid var(--oxblood)">
+  <div style="font-family:var(--ff-mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--oxblood);margin-bottom:var(--s-sm)">Headline result</div>
+  <p style="font-size:1.05rem;line-height:1.7;color:var(--ink);margin:0">
+    <strong>δ = 0.012</strong> for γ₁ = 14.135 at C = 2,000 (0.085% accuracy). <strong>δ = 0.019</strong> for γ₁₅ = 65.113 at C = 5,000 (0.029% accuracy). <strong>δ = 0.030</strong> for γ₄ = 30.425 at C = 10,000 (0.098% accuracy). Three sub-0.03 matches at three different grid widths and three different zeros, each confirmed by an independent matched-filter z-score exceeding 2.0.
+  </p>
+</section>
+
+</main>
+
+<div class="findings-band">
+<div class="findings-inner">
+  <h2>Three independent methods, converging</h2>
+  <p style="color:var(--ink-dim);font-size:1rem;line-height:1.65;max-width:var(--measure);margin-bottom:var(--s-md)">Each method was applied at five grid widths with 300-trial randomization controls. All three methods agree on the central finding.</p>
+  <div class="findings-grid">
+    <div class="finding">
+      <div class="finding-label">Method 1 — Log-space DFT</div>
+      <div class="finding-number"><em>2+</em> exact matches</div>
+      <div class="finding-note">Direct discrete Fourier transform with ln(6j) as time variable. Peaks within δ &lt; 2 of known zeros at every C.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-label">Method 2 — Lomb-Scargle</div>
+      <div class="finding-number">δ &lt; <em>0.03</em></div>
+      <div class="finding-note">Optimal for logarithmically-sampled data. Six tight matches across C values. Sharpest: γ₁₅ at 0.029% accuracy.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-label">Method 3 — Matched Filter</div>
+      <div class="finding-number"><em>10 / 30</em> significant</div>
+      <div class="finding-note">z-score versus 300 shuffled controls. Expected by chance: 1.5. Observed at C = 10,000: 10. p &lt; 0.001.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-label">Control specificity</div>
+      <div class="finding-number"><em>Zero</em></div>
+      <div class="finding-note">Shuffled residuals, white noise, and fake-prime sequences all fail to reproduce the signal. Unique to the real prime sequence.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<main style="max-width:var(--measure-wide);margin:0 auto;padding:0 2rem var(--s-lg)">
+
+<section style="margin-bottom:var(--s-lg)">
+  <h2 style="font-family:var(--ff-head);font-size:1.6rem;margin-bottom:var(--s-md);letter-spacing:-0.01em;border-top:1px solid var(--rule);padding-top:var(--s-md)">What this establishes</h2>
+  <p style="font-size:1rem;line-height:1.75;color:var(--ink);margin-bottom:var(--s)">The Tesfa Grid residuals, analyzed in log(j) frequency space, carry power elevated above random baseline at frequencies coinciding with the imaginary parts of Riemann zeta zeros. This is confirmed by three independent methods at five grid sizes with 300-trial randomization controls.</p>
+
+  <h3 style="font-family:var(--ff-head);font-size:1.2rem;margin:var(--s-md) 0 var(--s-sm);color:var(--ink)">What this does <em>not</em> establish</h3>
+  <p style="font-size:1rem;line-height:1.75;color:var(--ink);margin-bottom:var(--s)">This result does not prove the Riemann Hypothesis. It does not prove the Tesfa-Zeta Conjecture (which requires convergence as C → ∞). The analytic connection between the Tesfa Grid operator and the zeta function remains open.</p>
+
+  <h3 style="font-family:var(--ff-head);font-size:1.2rem;margin:var(--s-md) 0 var(--s-sm);color:var(--ink)">Correct statement</h3>
+  <p style="font-size:1rem;line-height:1.75;color:var(--ink)">The Tesfa-Zeta Conjecture has passed its first direct experimental test. The evidence is strong enough to report. It is not strong enough to claim proof of anything beyond what the data directly shows.</p>
+</section>
+
+<section style="margin-bottom:var(--s-lg)">
+  <h2 style="font-family:var(--ff-head);font-size:1.6rem;margin-bottom:var(--s-md);letter-spacing:-0.01em;border-top:1px solid var(--rule);padding-top:var(--s-md)">Open problems</h2>
+  <div class="open-problem">
+    <h3><span class="op-num">OP 1</span>TZC Convergence</h3>
+    <div class="op-body">Does δ_n(C) → 0 as C → ∞ for all n? Prove or disprove that Lomb-Scargle peak positions converge to the imaginary parts γ_n of the zeta zeros. Empirical fit at current scale: δ_n(C) ~ C^(−α) with α ≈ 0.12.</div>
+  </div>
+  <div class="open-problem">
+    <h3><span class="op-num">OP 2</span>Null-to-Gap Alignment</h3>
+    <div class="op-body">Prove that the Tesfa Harmonic Sieve nulls at f_k = k/C are positioned between consecutive γ_n values, making the Tesfa operator a natural band-pass filter for zeta-zero frequencies.</div>
+  </div>
+  <div class="open-problem">
+    <h3><span class="op-num">OP 3</span>Amplitude Formula</h3>
+    <div class="op-body">Derive an analytic expression for the z-score z(γ_n) as a function of C, γ_n, and the Tesfa operator transfer function. If z(γ_n) → ∞ as C → ∞, this implies convergence.</div>
+  </div>
+  <div class="open-problem">
+    <h3><span class="op-num">OP 4</span>Critical Line</h3>
+    <div class="op-body">Can the Tesfa spectral framework constrain the real part of the zeta zeros to Re(ρ) = 1/2? This would constitute a new approach to the Riemann Hypothesis — one not rooted in contour integration or random matrix methods, but in discrete geometric sieving.</div>
+  </div>
+  <a href="/open-problems" style="display:inline-block;margin-top:var(--s);font-family:var(--ff-mono);font-size:0.85rem;color:var(--ink-faint);text-decoration:none;letter-spacing:0.05em;border:none">See all open problems across the programme →</a>
+</section>
+
+</main>
+
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-brand">
+      <div class="footer-mast">The Tesfa Grid</div>
+      <p class="footer-sub">A research programme in number theory, discrete geometry, and spectral analysis. Independent. Based in Addis Ababa, Ethiopia.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Research</h5>
+      <a href="/research">Programme</a>
+      <a href="/publications">Publications</a>
+      <a href="/open-problems">Open Problems</a>
+    </div>
+    <div class="footer-col">
+      <h5>Volumes</h5>
+      <a href="/volume-1">Volume I</a>
+      <a href="/volume-2">Volume II</a>
+      <a href="/volume-3">Volume III</a>
+    </div>
+    <div class="footer-col">
+      <h5>Community</h5>
+      <a href="/community">Overview</a>
+      <a href="/for-students">For Students</a>
+      <a href="/newsletter">Newsletter</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <a href="/contact">General</a>
+      <a href="mailto:research@tesfagrid.io">research@tesfagrid.io</a>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© 2026 Tesfa Grid Research Programme</span>
+    <span class="footer-loc">Addis Ababa · Ethiopia</span>
+  </div>
+</footer>
+
+</body>
+</html>

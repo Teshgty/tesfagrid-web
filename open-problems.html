@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Publications — The Tesfa Grid</title>
-<meta name="description" content="Complete publications of the Tesfa Grid research programme: three-volume series, research notes, and open problems.">
+<title>Open Problems — The Tesfa Grid</title>
+<meta name="description" content="The open questions of the Tesfa Grid research programme, from tractable student problems to deep conjectures on the Riemann zeta function.">
 <link rel="icon" type="image/svg+xml" href="/tesfagrid-icon.svg">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-
 <nav>
   <div class="nav-wrap">
     <a href="/" class="nav-mast">
@@ -128,82 +127,87 @@
 </script>
 
 
-
 <section class="hero-prime">
-  <div class="hero-tag">Publications</div>
-  <h1>Papers, preprints, and <em>notes</em>.</h1>
-  <p class="hero-lead">The complete record of output from the research programme. Volumes are released as preprints upon completion and are intended for submission to peer-reviewed venues in number theory and discrete geometry.</p>
+  <div class="hero-tag">Open problems</div>
+  <h1>Questions under <em>active investigation</em>.</h1>
+  <p class="hero-lead">The research programme has, from the beginning, stated its open questions explicitly. The problems below range from tractable student-level investigations to deep questions about the connection between the Tesfa Grid and the Riemann zeta function.</p>
 </section>
 
-<main style="max-width:var(--measure-wide);margin:0 auto;padding:0 2rem var(--s-xl)">
+<main style="max-width:var(--measure);margin:0 auto;padding:0 2rem var(--s-xl)">
 
 <section style="margin-bottom:var(--s-xl)">
-  <h2 style="font-family:var(--ff-head);font-size:1.6rem;margin-bottom:var(--s-md);letter-spacing:-0.01em;border-bottom:1px solid var(--rule);padding-bottom:var(--s-sm)">The Tesfa Grid — three-volume programme</h2>
+  <h2 style="font-family:var(--ff-head);font-size:1.5rem;margin-bottom:var(--s-md);letter-spacing:-0.01em;border-bottom:1px solid var(--rule);padding-bottom:var(--s-sm)">Zeta function and Riemann Hypothesis</h2>
 
-  <a href="/volume-2" class="paper-card featured">
-    <span class="paper-card-tag tag-pub">Volume II · Preprint · March 2026 · Headline</span>
-    <h3>Empirical Evidence for the <em>Tesfa-Zeta Conjecture</em>: Spectral Alignment of Tesfa Grid Residuals with Riemann Zeta Zero Frequencies</h3>
-    <p class="paper-card-abstract">First direct experimental test of the Tesfa-Zeta Conjecture. Three independent spectral methods across five grid widths with 300 randomized controls. Lomb-Scargle peaks align with known zeta zeros at sub-0.1 accuracy; matched-filter finds 10 of 30 zeros significant at p &lt; 0.001. All signals absent in shuffled, noise, and fake-prime controls. The Riemann Hypothesis remains unproved; the Tesfa-Zeta Conjecture passes its first direct experimental test.</p>
-    <div class="paper-card-meta">
-      <span>Tesfaye Dereje</span>
-      <span>14 pages</span>
-      <span>Spectral analysis · ζ-function</span>
-      <span>Read full page →</span>
-    </div>
-  </a>
+  <div class="open-problem">
+    <h3><span class="op-num">OP 1</span>The Tesfa-Zeta Conjecture</h3>
+    <div class="op-body">Does the Fourier transform of the Tesfa Grid residuals ε(j), computed in logarithmic column-index space, converge as C → ∞ to a spectrum whose peaks coincide exactly with the imaginary parts γ_n of the non-trivial zeros of the Riemann zeta function? Volume II presents strong empirical support. An analytic proof remains open.</div>
+  </div>
 
-  <a href="/volume-1" class="paper-card">
-    <span class="paper-card-tag tag-pub">Volume I · Preprint · March 2026</span>
-    <h3>The Tesfa Grid: A Deterministic Harmonic Sieve and Its Structural Interactions with Prime Numbers</h3>
-    <p class="paper-card-abstract">Foundational volume. Nine proved theorems: Column Closure Law, Upper and Lower Diagonal Mean Laws, Row-6 Prime Exclusion, General Summation Formula, Block Divergence (R² = 0.9992), Mod-6 Gap Constraint, Twin Prime Hex-Spacing, and the Harmonic Sieve Theorem. Introduces the Tesfa Wave and the Tesfa Gap Code. Statement of the Tesfa-Zeta Conjecture.</p>
-    <div class="paper-card-meta">
-      <span>Tesfaye Dereje</span>
-      <span>33 pages</span>
-      <span>9 theorems · 3 parts</span>
-      <span>Read full page →</span>
-    </div>
-  </a>
+  <div class="open-problem">
+    <h3><span class="op-num">OP 2</span>Null-to-gap alignment</h3>
+    <div class="op-body">The Harmonic Sieve nulls occur at frequencies f_k = k/C. Prove (or disprove) that these nulls are positioned between consecutive γ_n values, making the Tesfa operator a natural band-pass filter for zeta-zero frequencies.</div>
+  </div>
 
-  <a href="/volume-3" class="paper-card">
-    <span class="paper-card-tag tag-prep">Volume III · In preparation · Late 2026</span>
-    <h3>The Multi-Level Gap Hierarchy and Structural Extensions</h3>
-    <p class="paper-card-abstract">Extends the programme to the fine structure of prime gaps. Scale Invariance (Theorem X), Perfect Number Classification (Theorem XI), Mean Convergence Law, and the Prime Oscillation Law. Preliminary summary available; full preprint expected late 2026.</p>
-    <div class="paper-card-meta">
-      <span>Tesfaye Dereje</span>
-      <span>In preparation</span>
-      <span>Expected late 2026</span>
-    </div>
-  </a>
+  <div class="open-problem">
+    <h3><span class="op-num">OP 3</span>Matched-filter amplitude formula</h3>
+    <div class="op-body">Derive an analytic expression for the matched-filter z-score z(γ_n) as a function of grid width C, zero index n, and the Tesfa operator transfer function. If the formula implies z(γ_n) → ∞ as C → ∞, the Tesfa-Zeta Conjecture follows.</div>
+  </div>
+
+  <div class="open-problem">
+    <h3><span class="op-num">OP 4</span>Critical line constraint</h3>
+    <div class="op-body">Can the Tesfa spectral framework constrain the real part of the zeta zeros to Re(ρ) = 1/2, providing a new path to the Riemann Hypothesis — one rooted in discrete geometric sieving rather than in contour integration or random matrix theory?</div>
+  </div>
 </section>
 
 <section style="margin-bottom:var(--s-xl)">
-  <h2 style="font-family:var(--ff-head);font-size:1.6rem;margin-bottom:var(--s-md);letter-spacing:-0.01em;border-bottom:1px solid var(--rule);padding-bottom:var(--s-sm)">Research notes</h2>
-  <p style="color:var(--ink-dim);font-size:0.98rem;line-height:1.65;max-width:var(--measure);margin-bottom:var(--s-md)">Shorter expository notes on specific theorems and empirical results from the programme.</p>
+  <h2 style="font-family:var(--ff-head);font-size:1.5rem;margin-bottom:var(--s-md);letter-spacing:-0.01em;border-bottom:1px solid var(--rule);padding-bottom:var(--s-sm)">Grid structure and prime distribution</h2>
 
-  <a href="/theorem-7" class="paper-card">
-    <span class="paper-card-tag tag-pub">Research note</span>
-    <h3>The Mod-6 Gap Constraint (Theorem VII)</h3>
-    <p class="paper-card-abstract">Statement, proof, and empirical verification of the Mod-6 Gap Constraint: every prime gap after the initial gap of 1 is congruent to 0, 2, or 4 modulo 6. Verified over 348,511 consecutive prime gaps with zero violations.</p>
-    <div class="paper-card-meta"><span>Read the note →</span></div>
-  </a>
+  <div class="open-problem">
+    <h3><span class="op-num">OP 5</span>Modular generalization of Row-6 Exclusion</h3>
+    <div class="op-body">Theorem IV proves the canonical grid's Row 6 contains no primes. For what broader class of parameter triples (a, d, C) does an analogous exclusion theorem hold? Is there a modular characterization?</div>
+  </div>
 
-  <a href="/harmonic-sieve" class="paper-card">
-    <span class="paper-card-tag tag-pub">Research note</span>
-    <h3>The Harmonic Sieve Theorem (Theorem IX)</h3>
-    <p class="paper-card-abstract">Statement and proof of the Harmonic Sieve Theorem: the generalized Tesfa Grid operator T_{C,w} has exact spectral nulls at frequencies k/C. Proved via the Dirichlet kernel and the Shift Theorem.</p>
-    <div class="paper-card-meta"><span>Read the note →</span></div>
-  </a>
+  <div class="open-problem">
+    <h3><span class="op-num">OP 6</span>Twin prime row symmetry</h3>
+    <div class="op-body">Twin primes concentrate in rows 1 and 5 of the grid, with approximately symmetric density (~35% each for primes up to 1,200). Is this symmetry asymptotic? Does it provide a new angle on the Twin Prime Conjecture?</div>
+  </div>
 
-  <a href="/oscillation-law" class="paper-card">
-    <span class="paper-card-tag tag-prep">Conjecture</span>
-    <h3>The Prime Oscillation Law</h3>
-    <p class="paper-card-abstract">A statement of the Prime Oscillation Law as an empirical conjecture. Prime gaps display a structured grow-and-shrink behavior that is significantly distinct from random walks. Full quantitative characterization forthcoming in Volume III.</p>
-    <div class="paper-card-meta"><span>Read the conjecture →</span></div>
-  </a>
+  <div class="open-problem">
+    <h3><span class="op-num">OP 7</span>Perfect number factorization</h3>
+    <div class="op-body">The first two perfect numbers (6 and 28) always fall in the upper block of the grid; the third (496) in the lower. Does the Euclid–Euler formula 2^(n−1)(2^n − 1) admit a natural Tesfa Grid factorization? Volume III provides a classification; an algebraic proof for all perfect numbers is open.</div>
+  </div>
+
+  <div class="open-problem">
+    <h3><span class="op-num">OP 8</span>n-row Tesfa grids</h3>
+    <div class="op-body">The six-row grid is canonical for the mod-6 structure of primes. Do grids with n ≠ 6 rows exhibit analogous structural properties? Does a 30-row grid expose finer structure corresponding to the mod-30 residue classes?</div>
+  </div>
+</section>
+
+<section style="margin-bottom:var(--s-xl)">
+  <h2 style="font-family:var(--ff-head);font-size:1.5rem;margin-bottom:var(--s-md);letter-spacing:-0.01em;border-bottom:1px solid var(--rule);padding-bottom:var(--s-sm)">Harmonic Sieve and spectral analysis</h2>
+
+  <div class="open-problem">
+    <h3><span class="op-num">OP 9</span>Grid suppression conjecture</h3>
+    <div class="op-body">The Harmonic Sieve produces low-frequency power enhancement for the prime sequence at Z ≈ 17σ. Prove analytically that the expected LF power ratio for prime inputs differs from the random baseline by a specific amount depending only on C.</div>
+  </div>
+
+  <div class="open-problem">
+    <h3><span class="op-num">OP 10</span>Dynamic width scaling</h3>
+    <div class="op-body">The cross-cycle residual correlation decays from 0.80 at W = 116 to 0.31 at 12 cycles. Would a dynamically-scaled width W(n) ∝ ln(n) maintain maximum resonance across unbounded prime ranges? Characterize the optimal scaling function.</div>
+  </div>
+
+  <div class="open-problem">
+    <h3><span class="op-num">OP 11</span>L-function connections</h3>
+    <div class="op-body">The zeta function is the simplest of the L-functions. Does the Tesfa Grid residual spectrum also align with zeros of Dirichlet L-functions, automorphic L-functions, or Selberg zeta functions? Is there a family of modified Tesfa operators, each tuned to a different L-function?</div>
+  </div>
+</section>
+
+<section style="padding-top:var(--s-md);border-top:1px solid var(--rule);margin-top:var(--s-md);text-align:center">
+  <p style="color:var(--ink-dim);font-size:1rem;max-width:32rem;margin:0 auto var(--s)">If you are working on any of these problems or have a partial result to share, correspondence is welcomed.</p>
+  <a href="/contact" class="btn-read">Get in touch →</a>
 </section>
 
 </main>
-
 
 <footer>
   <div class="footer-wrap">

@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Tesfa Grid — a geometric framework for prime numbers</title>
-<meta name="description" content="Independent mathematical research on the hidden structure of prime numbers.">
-<link rel="stylesheet" href="style.css">
-<link rel="icon" type="image/svg+xml" href="tesfagrid-icon.svg">
+<title>Home — The Tesfa Grid</title>
+<meta name="description" content="The Tesfa Grid — an independent research programme in number theory exploring a geometric framework for the structure of prime numbers.">
+<link rel="icon" type="image/svg+xml" href="/tesfagrid-icon.svg">
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
@@ -17,226 +17,270 @@
       <span class="nav-mast-sub">a research programme in number theory</span>
     </a>
     <div class="nav-links">
-      <a href="/" class="here">Introduction</a>
-      <a href="/theorem-7">Theorem 7</a>
-      <a href="/column-class-sieve">The Sieve</a>
-      <a href="/oscillation-law">Oscillation Law</a>
-      <a href="/publications">Publications</a>
-      <a href="/team">Team</a>
+      <div class="nav-dd">
+        <button class="nav-dd-trigger">Research <span class="nav-dd-chev">▾</span></button>
+        <div class="nav-dd-menu">
+          <span class="nav-dd-label">The Programme</span>
+          <a href="/research" class="nav-dd-item">Overview <span class="desc">The research programme</span></a>
+          <a href="/open-problems" class="nav-dd-item">Open Problems <span class="desc">Questions under investigation</span></a>
+          <div class="nav-dd-divider"></div>
+          <span class="nav-dd-label">Key Results</span>
+          <a href="/theorem-7" class="nav-dd-item">Mod-6 Gap Constraint <span class="desc">Theorem VII</span></a>
+          <a href="/oscillation-law" class="nav-dd-item">Oscillation Law <span class="desc">Empirical conjecture</span></a>
+          <a href="/harmonic-sieve" class="nav-dd-item">Harmonic Sieve <span class="desc">Theorem IX</span></a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-trigger">Publications <span class="nav-dd-chev">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/publications" class="nav-dd-item">All Publications <span class="desc">Papers, preprints, notes</span></a>
+          <div class="nav-dd-divider"></div>
+          <span class="nav-dd-label">The Three Volumes</span>
+          <a href="/volume-1" class="nav-dd-item">Volume I · The Tesfa Grid <span class="desc">Foundational theorems</span></a>
+          <a href="/volume-2" class="nav-dd-item">Volume II · Tesfa-Zeta <span class="desc">Spectral alignment evidence</span></a>
+          <a href="/volume-3" class="nav-dd-item">Volume III · Gap Hierarchy <span class="desc">In preparation</span></a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-trigger">Community <span class="nav-dd-chev">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/community" class="nav-dd-item">Overview <span class="desc">Ways to engage</span></a>
+          <div class="nav-dd-divider"></div>
+          <a href="/seminars" class="nav-dd-item">Seminars &amp; Talks <span class="desc">Upcoming and archived</span></a>
+          <a href="/collaborators" class="nav-dd-item">Collaborators <span class="desc">Researchers and institutions</span></a>
+          <a href="/for-students" class="nav-dd-item">For Students <span class="desc">Research questions, guidance</span></a>
+          <a href="/newsletter" class="nav-dd-item">Newsletter <span class="desc">Quarterly updates</span></a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-trigger">About <span class="nav-dd-chev">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/about" class="nav-dd-item">The Programme <span class="desc">Mission &amp; approach</span></a>
+          <a href="/philosophy" class="nav-dd-item">Philosophy <span class="desc">Geometry first, primes second</span></a>
+          <a href="/team" class="nav-dd-item">Team <span class="desc">Researcher profile</span></a>
+          <div class="nav-dd-divider"></div>
+          <a href="/contact" class="nav-dd-item">Contact <span class="desc">Correspondence</span></a>
+        </div>
+      </div>
     </div>
+    <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="kicker">A research programme</div>
-  <h1>A geometric framework<br>for the <em>structure of primes</em></h1>
-  <p class="standfirst">
-    The Tesfa Grid is a matrix arrangement in which every prime greater
-    than 3 occupies a restricted set of columns. What appears chaotic
-    at the level of individual primes becomes more ordered at the level
-    of rows and residues. This observation is the foundation of a
-    research programme: a growing body of theorems, empirical findings,
-    and applied constructions concerning the deep structure of number
-    theory.
-  </p>
-  <div class="byline">Tesfaye Dereje &middot; Addis Ababa &middot; 2026</div>
+<div class="nav-mobile-panel" id="navMobilePanel">
+  <button class="nav-mobile-close" id="navMobileClose" aria-label="Close menu">×</button>
+  <div class="nav-mobile-section"><div class="nav-mobile-section-title">Research</div>
+    <a href="/research">Overview</a>
+    <a href="/open-problems">Open Problems</a>
+    <a href="/theorem-7">Mod-6 Gap Constraint</a>
+    <a href="/oscillation-law">Oscillation Law</a>
+    <a href="/harmonic-sieve">Harmonic Sieve</a>
+  </div>
+  <div class="nav-mobile-section"><div class="nav-mobile-section-title">Publications</div>
+    <a href="/publications">All Publications</a>
+    <a href="/volume-1">Volume I · The Tesfa Grid</a>
+    <a href="/volume-2">Volume II · Tesfa-Zeta</a>
+    <a href="/volume-3">Volume III · Gap Hierarchy</a>
+  </div>
+  <div class="nav-mobile-section"><div class="nav-mobile-section-title">Community</div>
+    <a href="/community">Overview</a>
+    <a href="/seminars">Seminars &amp; Talks</a>
+    <a href="/collaborators">Collaborators</a>
+    <a href="/for-students">For Students</a>
+    <a href="/newsletter">Newsletter</a>
+  </div>
+  <div class="nav-mobile-section"><div class="nav-mobile-section-title">About</div>
+    <a href="/about">The Programme</a>
+    <a href="/philosophy">Philosophy</a>
+    <a href="/team">Team</a>
+    <a href="/contact">Contact</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var t = document.getElementById('navMobileToggle');
+  var p = document.getElementById('navMobilePanel');
+  var c = document.getElementById('navMobileClose');
+  if(t && p) t.addEventListener('click', function(){ p.classList.add('open'); });
+  if(c && p) c.addEventListener('click', function(){ p.classList.remove('open'); });
+  if(p) p.addEventListener('click', function(e){
+    if(e.target.tagName === 'A') p.classList.remove('open');
+  });
+  document.addEventListener('click', function(e){
+    if(!e.target.closest('.nav-dd')){
+      document.querySelectorAll('.nav-dd-menu.open').forEach(function(m){ m.classList.remove('open'); });
+      document.querySelectorAll('.nav-dd-trigger.open').forEach(function(b){ b.classList.remove('open'); });
+    }
+  });
+  document.querySelectorAll('.nav-dd-trigger').forEach(function(b){
+    b.addEventListener('click', function(e){
+      if(window.innerWidth > 900) return;
+      e.preventDefault();
+      var m = b.nextElementSibling;
+      m.classList.toggle('open');
+      b.classList.toggle('open');
+    });
+  });
+})();
+</script>
+
+
+
+<section class="hero-prime">
+  <div class="hero-tag">Research Programme · 2013 – present</div>
+  <h1>A geometric framework for the <em>structure</em> of primes.</h1>
+  <p class="hero-lead">The Tesfa Grid is a six-row matrix construction, filled by an immutable two-phase rule, that exposes structural regularities in the distribution of prime numbers — regularities invisible when primes are arranged on the traditional one-dimensional line.</p>
+  <p class="hero-lead">Eleven theorems. Three volumes. One central conjecture about the connection between prime distribution and the Riemann zeta function.</p>
+  <div class="hero-meta">
+    <span>Independent research</span>
+    <span>Addis Ababa, Ethiopia</span>
+    <span>Number theory · Discrete geometry · Spectral analysis</span>
+  </div>
 </section>
 
-<div class="ornament double"></div>
+<main class="home-content" style="max-width:62rem;margin:0 auto;padding:0 2rem var(--s-lg)">
 
-<article class="page">
-
-  <div class="abstract">
-    <span class="label">Abstract</span>
-    <p>
-      Prime numbers are traditionally studied as points on a number
-      line. The Tesfa Grid recasts them as coordinates in a
-      two-dimensional lattice indexed by their residues modulo six.
-      In this lattice, certain regularities that are obscure on the
-      integer line become more visible, and can be stated as theorems,
-      verified empirically, or put to computational use.
-    </p>
-    <p>
-      This programme has so far produced three research notes. The
-      first (Theorem 7) is a proved constraint on consecutive prime
-      gaps, verified across <span class="sc">348,511</span> gaps with
-      zero violations. The second (the Column-Class Sieve) is a
-      prime-generation method derived from the first. The third (the
-      Oscillation Law) is an empirical regularity governing
-      second-differences of gaps, stated as a conjecture. Further
-      volumes are in preparation.
-    </p>
+<!-- LATEST / HEADLINE -->
+<section style="margin-bottom:var(--s-xl)">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:var(--s-md);border-bottom:1px solid var(--rule);padding-bottom:var(--s-sm)">
+    <h2 style="font-family:var(--ff-head);font-size:1.8rem;margin:0;letter-spacing:-0.01em">Latest research</h2>
+    <a href="/publications" style="font-family:var(--ff-mono);font-size:0.82rem;color:var(--ink-faint);letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border:none">All publications →</a>
   </div>
 
-  <h2><span class="num">I.</span> Why a grid</h2>
-
-  <p class="drop-cap">
-    The prime numbers refuse to cooperate with most attempts at
-    prediction. Gauss, Riemann, Littlewood, and Erdős each advanced
-    the theory by degrees but the primes remain, in Erdős's phrase,
-    a subject about which mathematicians know little and suspect less.
-    This programme does not claim to resolve what they could not. It
-    claims something smaller and more concrete: that certain patterns,
-    obscure on the integer line, become more apparent when primes are
-    displayed on a grid indexed by their residues modulo six, and that
-    these patterns can be stated, tested, and sometimes put to use.
-  </p>
-
-  <p>
-    The construction is elementary. Every integer <code class="math">n &gt; 3</code>
-    satisfies <code class="math">n &equiv; r (mod 6)</code> for exactly
-    one <code class="math">r &isin; {0, 1, 2, 3, 4, 5}</code>. Since
-    <code class="math">6 = 2&middot;3</code>, any integer with residue
-    <code class="math">0, 2, 3, 4</code> is composite. Primes greater
-    than 3 therefore occupy only columns <code class="math">r = 1</code>
-    and <code class="math">r = 5</code>. The Tesfa Grid arranges
-    integers in this six-column layout and asks what becomes visible
-    when primes are marked.
-  </p>
-
-  <h3>What the grid reveals</h3>
-
-  <p>
-    Three findings have been extracted from this construction so far,
-    each with a different character. The first is a proved constraint
-    on prime gaps. The second is a prime-generation method derived
-    from it. The third is an empirical regularity in gap
-    second-differences, currently stated as a conjecture.
-  </p>
-
-  <div class="theorem">
-    <span class="label">Theorem 7 &middot; a brief statement</span>
-    <p>
-      Any two consecutive primes <code class="math">p<sub>k</sub></code>
-      and <code class="math">p<sub>k+1</sub></code> greater than 3
-      satisfy <code class="math">g<sub>k</sub> &equiv; 0, 2, or 4 (mod 6)</code>
-      for the gap <code class="math">g<sub>k</sub> = p<sub>k+1</sub> &minus; p<sub>k</sub></code>.
-      Verified empirically across <span class="sc">348,511</span>
-      consecutive gaps with zero violations.
-      <a href="/theorem-7">Read the note &rarr;</a>
-    </p>
-  </div>
-
-</article>
-
-<div class="ornament"></div>
-
-<section class="volumes">
-  <h2 style="text-align:center;padding:0;margin-top:0;margin-bottom:var(--s-md)"><span class="num">II.</span> The volumes</h2>
-
-  <a href="/theorem-7" style="border-bottom:none">
-    <div class="volume-entry">
-      <div class="vol-num">I.</div>
-      <div>
-        <div class="vol-title">Theorem 7 <em>&middot; the mod-6 gap constraint</em></div>
-        <div class="vol-desc">A proved constraint on consecutive prime gaps. Empirically verified across 348,511 gaps.</div>
-      </div>
-      <div class="vol-status published">Published</div>
+  <a href="/volume-2" class="paper-card featured">
+    <span class="paper-card-tag tag-pub">Volume II · Preprint · March 2026</span>
+    <h3>Empirical Evidence for the <em>Tesfa-Zeta Conjecture</em>: Spectral Alignment of Tesfa Grid Residuals with Riemann Zeta Zero Frequencies</h3>
+    <p class="paper-card-abstract">We present the first direct experimental test of the Tesfa-Zeta Conjecture — the proposition that the Fourier transform of the Tesfa Grid residuals, computed in logarithmic column-index space, produces spectral peaks coinciding with the imaginary parts of the non-trivial zeros of the Riemann zeta function. Three independent methods applied across five grid widths (C = 500 to 10,000) with 300 randomized controls. Lomb-Scargle peaks align with known zeta zeros at sub-0.1 accuracy. Matched-filter tests find 10 of 30 zeros significant at C = 10,000 (p &lt; 0.001).</p>
+    <div class="paper-card-meta">
+      <span>14 pages</span>
+      <span>Spectral analysis · Zeta function</span>
+      <span>Read paper →</span>
     </div>
   </a>
 
-  <a href="/column-class-sieve" style="border-bottom:none">
-    <div class="volume-entry">
-      <div class="vol-num">II.</div>
-      <div>
-        <div class="vol-title">The Column-Class <em>Sieve</em></div>
-        <div class="vol-desc">A prime-generation algorithm derived from the grid. Applied form licensed through Ethoryx.</div>
-      </div>
-      <div class="vol-status published">Published</div>
+  <a href="/volume-1" class="paper-card">
+    <span class="paper-card-tag tag-pub">Volume I · Preprint · March 2026</span>
+    <h3>The Tesfa Grid: A Deterministic Harmonic Sieve and Its Structural Interactions with Prime Numbers</h3>
+    <p class="paper-card-abstract">The foundational volume. Nine proved theorems including the Column Closure Law, Diagonal Mean Laws, Row-6 Structural Prime Exclusion, General Summation Formula, Block Divergence, Mod-6 Gap Constraint, Twin Prime Hex-Spacing, and the Harmonic Sieve Theorem. Introduces the Tesfa Wave, the Tesfa Gap Code, and the Tesfa-Zeta Conjecture.</p>
+    <div class="paper-card-meta">
+      <span>33 pages</span>
+      <span>Nine theorems · Part I, II, III</span>
+      <span>Read paper →</span>
     </div>
   </a>
 
-  <a href="/oscillation-law" style="border-bottom:none">
-    <div class="volume-entry">
-      <div class="vol-num">III.</div>
-      <div>
-        <div class="vol-title">The Oscillation <em>Law</em></div>
-        <div class="vol-desc">An empirical regularity: second-differences of consecutive gaps alternate sign more often than chance.</div>
-      </div>
-      <div class="vol-status">Conjecture</div>
-    </div>
-  </a>
-
-  <a href="/publications" style="border-bottom:none">
-    <div class="volume-entry">
-      <div class="vol-num">IV.</div>
-      <div>
-        <div class="vol-title">Publications <em>&amp; citations</em></div>
-        <div class="vol-desc">Research notes, BibTeX, and the archival record. Further volumes in preparation.</div>
-      </div>
-      <div class="vol-status">Ongoing</div>
+  <a href="/volume-3" class="paper-card">
+    <span class="paper-card-tag tag-prep">Volume III · In preparation · Expected late 2026</span>
+    <h3>The Multi-Level Gap Hierarchy and Structural Extensions</h3>
+    <p class="paper-card-abstract">Extends the research programme with further structural theorems on the multi-level gap hierarchy, including the Mean Convergence Law and the Prime Oscillation Law. A deeper investigation of scale invariance, perfect number classification within the grid, and the fine structure of prime gap sequences.</p>
+    <div class="paper-card-meta">
+      <span>In preparation</span>
+      <span>Further theorems</span>
     </div>
   </a>
 </section>
 
-<div class="ornament"></div>
+<!-- PRINCIPLES -->
+<section style="margin-bottom:var(--s-xl)">
+  <h2 style="font-family:var(--ff-head);font-size:1.8rem;margin-bottom:var(--s-md);letter-spacing:-0.01em;border-bottom:1px solid var(--rule);padding-bottom:var(--s-sm)">Guiding principles</h2>
+  <div class="pillar-grid">
+    <div class="pillar">
+      <h3>Geometry first, primes second</h3>
+      <p>The grid's two-phase filling rule is defined purely geometrically, independent of any property of its entries. All structural theorems are established before primes are introduced. What remains after primes enter must be a genuine interaction between structure and sequence, not an artifact of the definition.</p>
+    </div>
+    <div class="pillar">
+      <h3>Statement, proof, verification</h3>
+      <p>Every claim is either a proved theorem with an algebraic or spectral proof, or an empirical observation with full statistical support and specified null hypothesis. Conjectures are clearly labeled as conjectures.</p>
+    </div>
+    <div class="pillar">
+      <h3>Open research</h3>
+      <p>The mathematics is for everyone. Correspondence, critique, and collaboration are welcomed. Open problems are stated explicitly in each volume. Students and researchers at any career stage are invited to engage.</p>
+    </div>
+    <div class="pillar">
+      <h3>Deliberate disclosure</h3>
+      <p>The mathematical framework is published freely. Applied engineering built on top of the framework is pursued through a separate commercial venture and is not part of the research programme's public output.</p>
+    </div>
+  </div>
+</section>
 
-<article class="page">
+<!-- KEY FINDINGS -->
+<section style="margin-bottom:var(--s-xl)">
+  <h2 style="font-family:var(--ff-head);font-size:1.8rem;margin-bottom:var(--s-sm);letter-spacing:-0.01em;border-bottom:1px solid var(--rule);padding-bottom:var(--s-sm)">Selected findings</h2>
+  <p style="color:var(--ink-dim);font-size:1rem;line-height:1.65;max-width:var(--measure);margin-bottom:var(--s-md)">A small selection of quantitative results from the two published volumes.</p>
+  <div class="findings-grid">
+    <div class="finding">
+      <div class="finding-label">Block Divergence</div>
+      <div class="finding-number">R² = <em>0.9992</em></div>
+      <div class="finding-note">Linear fit of prime-only block divergence across columns. Slope ≈ 52.1 per column. p &lt; 4.4×10⁻¹²². Theorem VI.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-label">Sinusoidal Fit</div>
+      <div class="finding-number">R² = <em>0.8622</em></div>
+      <div class="finding-note">At grid width C = 600, the detrended prime residuals fit a sinusoid with permutation p = 0.0000 in 5,000 trials. Section 15.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-label">LF Power Ratio</div>
+      <div class="finding-number">Z = <em>17σ</em></div>
+      <div class="finding-note">Low-frequency power concentration versus random permutation controls (300 trials). Width-robust, scale-strengthening. Section 14.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-label">Zeta Alignment</div>
+      <div class="finding-number">δ = <em>0.012</em></div>
+      <div class="finding-note">Lomb-Scargle peak alignment with γ₁ = 14.135 at C = 2,000. Matched-filter: 10 of 30 zeta zeros significant at p &lt; 0.001. Volume II.</div>
+    </div>
+  </div>
+</section>
 
-  <h2><span class="num">III.</span> What this is and what it is not</h2>
+<!-- INVITE -->
+<section style="margin-bottom:var(--s-xl);max-width:var(--measure-wide);margin-left:auto;margin-right:auto;text-align:center;padding-top:var(--s-md)">
+  <h2 style="font-family:var(--ff-head);font-size:1.8rem;margin-bottom:var(--s-md);letter-spacing:-0.01em">An open invitation</h2>
+  <p style="color:var(--ink-dim);font-size:1.05rem;line-height:1.7;margin-bottom:var(--s-md)">The Tesfa Grid is an independent research programme. If you work in number theory, spectral analysis, discrete geometry, or computational mathematics — and you find these questions worth your time — we would be delighted to hear from you.</p>
+  <div style="display:flex;gap:var(--s-sm);justify-content:center;flex-wrap:wrap;margin-top:var(--s-md)">
+    <a href="/publications" class="btn-read">Read the publications →</a>
+    <a href="/open-problems" class="btn-read btn-read-sec">See open problems</a>
+    <a href="/contact" class="btn-read btn-read-sec">Get in touch</a>
+  </div>
+</section>
 
-  <p>
-    The Tesfa Grid is an independent research programme, conducted
-    from Addis Ababa, Ethiopia. It is not affiliated with a
-    university or funded by a grant. Its findings are offered
-    openly, under the ordinary conventions of a research note:
-    statements are made precisely, proof outlines are given where
-    available, empirical evidence is quantified where proofs are
-    not, and no claim exceeds what the work supports.
-  </p>
+</main>
 
-  <p>
-    The programme has a commercial sibling at
-    <a href="https://ethoryx.io">ethoryx.io</a>, which produces
-    cryptographic software derived from these results. The two are
-    kept separate. What lives on this site is the mathematics. What
-    lives on <span class="sc">ethoryx.io</span> is the engineering.
-    Detailed parameter choices, specific implementation decisions,
-    and source code for the applied constructions are held internally
-    and are made available to collaborators and commercial licensees
-    rather than posted publicly.
-  </p>
-
-  <h3>The reader</h3>
-
-  <p>
-    These pages are written for the working mathematician, the
-    cryptographer who wants to understand what lies beneath the
-    algorithm, and the serious student encountering this material
-    for the first time. Where notation can be unpacked in a sentence,
-    it is unpacked. Where the underlying machinery is deep, pointers
-    are provided.
-  </p>
-
-  <blockquote>
-    The problems of prime numbers have engaged humankind since
-    ancient times, not so much for any practical purpose, but because
-    each of these mathematical jewels possesses a character of its own.
-    <cite>Paul Erdős, <em>The Two Cultures of Mathematics</em></cite>
-  </blockquote>
-
-  <h3>Contact</h3>
-
-  <p>
-    Correspondence is welcomed, particularly on the mathematics
-    itself. Write to
-    <a href="mailto:research@ethoryx.io">research@ethoryx.io</a>.
-    For commercial enquiries, please visit
-    <a href="https://ethoryx.io/contact">ethoryx.io/contact</a>.
-  </p>
-
-</article>
 
 <footer>
-  <div class="colophon">
-    Set in <span class="sc">EB Garamond</span> and
-    <span class="sc">Crimson Pro</span>, with mathematics in
-    <span class="sc">JetBrains Mono</span>. Written and maintained
-    by Tesfaye Dereje, independent researcher, Addis Ababa.
+  <div class="footer-wrap">
+    <div class="footer-brand">
+      <div class="footer-mast">The Tesfa Grid</div>
+      <p class="footer-sub">A research programme in number theory, discrete geometry, and spectral analysis. Independent. Based in Addis Ababa, Ethiopia.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Research</h5>
+      <a href="/research">Programme</a>
+      <a href="/publications">Publications</a>
+      <a href="/open-problems">Open Problems</a>
+    </div>
+    <div class="footer-col">
+      <h5>Volumes</h5>
+      <a href="/volume-1">Volume I</a>
+      <a href="/volume-2">Volume II</a>
+      <a href="/volume-3">Volume III</a>
+    </div>
+    <div class="footer-col">
+      <h5>Community</h5>
+      <a href="/community">Overview</a>
+      <a href="/for-students">For Students</a>
+      <a href="/newsletter">Newsletter</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <a href="/contact">General</a>
+      <a href="mailto:research@tesfagrid.io">research@tesfagrid.io</a>
+    </div>
   </div>
-  <div class="credits">
-    © 2026 &middot; <a href="mailto:research@ethoryx.io">research@ethoryx.io</a> &middot;
-    <a href="https://ethoryx.io">Ethoryx</a>
+  <div class="footer-bot">
+    <span>© 2026 Tesfa Grid Research Programme</span>
+    <span class="footer-loc">Addis Ababa · Ethiopia</span>
   </div>
 </footer>
 
